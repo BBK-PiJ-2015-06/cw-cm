@@ -39,4 +39,11 @@ public class TestContact {
 		myContact.addNotes(null);
 		assertEquals("Great keeper", myContact.getNotes());
 	}
+	
+	@Test 
+	public void testAddingNullNotesToEmptyString() {
+		Contact myContact = new ContactImpl(1, "Hugo Lloris");
+		myContact.addNotes(null);
+		assertEquals("", myContact.getNotes());
+	}
 }
