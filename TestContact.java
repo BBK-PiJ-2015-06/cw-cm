@@ -111,5 +111,4 @@ public class TestContact {
 	public void testPassingNullNameToRestrictedConstructor() {
 		Contact myContact = new ContactImpl(1, null);
 	}
-	
 }
