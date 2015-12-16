@@ -91,4 +91,9 @@ public class TestContact {
 	public void testPassingZeroIdWithRestrictedConstructor() {
 		Contact myContact = new ContactImpl(0, "NewContact");
 	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testPassingNullNameToGeneralConstructor() {
+		Contact myContact = new ContactImpl(1, null, "Notes");
+	}
 }
