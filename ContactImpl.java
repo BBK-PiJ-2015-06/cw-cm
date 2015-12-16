@@ -16,7 +16,7 @@ public class ContactImpl implements Contact {
 		if(id < 1) {
 			throw new IllegalArgumentException("Contact ID cannot be less than 1");
 		}
-		if(name == null) {
+		if(name == null || notes == null) {
 			throw new NullPointerException("Parameters cannot be null");
 		}
 		this.id = id;
