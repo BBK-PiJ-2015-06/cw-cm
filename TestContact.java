@@ -106,4 +106,10 @@ public class TestContact {
 	public void testPassingAllNullParametersToGeneralConstructor() {
 		Contact myContact = new ContactImpl(1, null, null);
 	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testPassingNullNameToRestrictedConstructor() {
+		Contact myContact = new ContactImpl(1, null);
+	}
+	
 }
