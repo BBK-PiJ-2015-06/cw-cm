@@ -69,14 +69,26 @@ public class TestContact {
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void testPassingIDLessThanZeroWithGeneralConstructor() {
+	public void testPassingIdLessThanZeroWithGeneralConstructor() {
 		for(int i = -1; i > -10; i--) {
 			Contact myContact = new ContactImpl(i, "NewContact", "Notes");
 		}
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void testPassingZeroIDWithGeneralConstructor() {
+	public void testPassingZeroIdWithGeneralConstructor() {
 		Contact myContact = new ContactImpl(0, "NewContact", "Notes");
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testPassingIdLessThanZeroWithRestrictedConstructor() {
+		for(int i = -1; i > -10; i--) {
+			Contact myContact = new ContactImpl(i, "NewContact");
+		}
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testPassingZeroIdWithRestrictedConstructor() {
+		Contact myContact = new ContactImpl(0, "NewContact");
 	}
 }
