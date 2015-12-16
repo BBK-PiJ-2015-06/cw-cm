@@ -8,7 +8,7 @@ public class TestContact {
 		Contact myContact = new ContactImpl(3, "Harry Kane", "Awesome striker");
 		assertEquals(3, myContact.getId());
 		assertEquals("Harry Kane", myContact.getName());
-		assertEquals("Awesome Striker", myContact.getNotes());
+		assertEquals("Awesome striker", myContact.getNotes());
 	}
 	
 }
