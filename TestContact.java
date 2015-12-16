@@ -101,4 +101,9 @@ public class TestContact {
 	public void testPassingNullNotesToGeneralConstructor() {
 		Contact myContact = new ContactImpl(1, "NewContact", null);
 	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testPassingAllNullParametersToGeneralConstructor() {
+		Contact myContact = new ContactImpl(1, null, null);
+	}
 }
