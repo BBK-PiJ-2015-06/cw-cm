@@ -32,5 +32,7 @@ public class ContactImpl implements Contact {
 	}
 	
 	@Override
-	public void addNotes(String note) {}
+	public void addNotes(String note) {
+		this.notes += '\n' + note;
+	}
 }
