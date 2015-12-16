@@ -25,4 +25,11 @@ public class TestContact {
 		myContact.addNotes("Made mistakes last game");
 		assertEquals("Great keeper\nMade mistakes last game", myContact.getNotes());
 	}
+	
+	@Test 
+	public void testAddingNotesToEmptyString() {
+		Contact myContact = new ContactImpl(4, "Toby Alderwereild");
+		myContact.addNotes("Made mistakes last game");
+		assertEquals("Made mistakes last game", myContact.getNotes());
+	}
 }
