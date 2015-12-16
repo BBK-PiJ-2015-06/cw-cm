@@ -10,6 +10,8 @@ public class ContactImpl implements Contact {
 		this.notes = notes;
 	}
 	
+	public ContactImpl(int id, String name) {}
+	
 	@Override
 	public int getId() {
 		return this.id;
