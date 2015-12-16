@@ -46,4 +46,25 @@ public class TestContact {
 		myContact.addNotes(null);
 		assertEquals("", myContact.getNotes());
 	}
+	
+	@Test 
+	public void testAddingCombinationOfNullAndCorrectNotesToExistingNotes() {
+		Contact myContact = new ContactImpl(1, "Hugo Lloris", "Great keeper");
+		myContact.addNotes(null);
+		myContact.addNotes(null);
+		myContact.addNotes("but made mistakes last week");
+		myContact.addNotes(null);
+		assertEquals("Great keeper\nbut made mistakes last week", myContact.getNotes());
+	}
+	
+	@Test 
+	public void testAddingCombinationOfNullAndCorrectNotesToEmptyString() {
+		Contact myContact = new ContactImpl(1, "Hugo Lloris");
+		myContact.addNotes(null);
+		myContact.addNotes("Great keeper");
+		myContact.addNotes(null);
+		myContact.addNotes(null);
+		myContact.addNotes("but made mistakes last week");
+		assertEquals("Great keeper\nbut made mistakes last week", myContact.getNotes());
+	}
 }
