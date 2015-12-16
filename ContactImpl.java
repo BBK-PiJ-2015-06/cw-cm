@@ -33,6 +33,9 @@ public class ContactImpl implements Contact {
 	
 	@Override
 	public void addNotes(String note) {
-		this.notes += '\n' + note;
+		if(!this.notes.equals("")) {
+			this.notes+= '\n';
+		}
+		this.notes += note;
 	}
 }
