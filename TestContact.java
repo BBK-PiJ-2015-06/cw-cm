@@ -11,4 +11,11 @@ public class TestContact {
 		assertEquals("Awesome striker", myContact.getNotes());
 	}
 	
+	@Test 
+	public void testsGetterMethodsWithRestrictedConstructor() {
+		Contact myContact = new ContactImpl(2, "Kyle Walker");
+		assertEquals(2, myContact.getId());
+		assertEquals("Kyle Walker", myContact.getName());
+		assertEquals("", myContact.getNotes());
+	}
 }
