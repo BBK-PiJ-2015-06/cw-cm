@@ -5,6 +5,9 @@ public class ContactImpl implements Contact {
 	private String notes;
 	
 	public ContactImpl(int id, String name, String notes) {
+		if(id < 1) {
+			throw new IllegalArgumentException("Contact ID cannot be less than 1");
+		}
 		this.id = id;
 		this.name = name;
 		this.notes = notes;
