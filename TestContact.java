@@ -32,4 +32,11 @@ public class TestContact {
 		myContact.addNotes("Made mistakes last game");
 		assertEquals("Made mistakes last game", myContact.getNotes());
 	}
+	
+	@Test 
+	public void testAddingNullNotesToExistingNotes() {
+		Contact myContact = new ContactImpl(1, "Hugo Lloris", "Great keeper");
+		myContact.addNotes(null);
+		assertEquals("Great keeper", myContact.getNotes());
+	}
 }
