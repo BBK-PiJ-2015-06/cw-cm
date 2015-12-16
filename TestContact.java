@@ -96,4 +96,9 @@ public class TestContact {
 	public void testPassingNullNameToGeneralConstructor() {
 		Contact myContact = new ContactImpl(1, null, "Notes");
 	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testPassingNullNotesToGeneralConstructor() {
+		Contact myContact = new ContactImpl(1, "NewContact", null);
+	}
 }
