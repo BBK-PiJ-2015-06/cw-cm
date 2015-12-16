@@ -71,7 +71,7 @@ public class TestContact {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPassingIDLessThanOneWithGeneralConstructor() {
 		for(int i = 0; i > -10; i--) {
-			Contact myContact = new ContactImpl(i, "NewContact");
+			Contact myContact = new ContactImpl(i, "NewContact", "Notes");
 		}
 	}
 }
