@@ -67,4 +67,11 @@ public class TestContact {
 		myContact.addNotes("but made mistakes last week");
 		assertEquals("Great keeper\nbut made mistakes last week", myContact.getNotes());
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testPassingIDLessThanOneWithGeneralConstructor() {
+		for(int i = 0; i > -10; i--) {
+			Contact myContact = new ContactImpl(i, "NewContact");
+		}
+	}
 }
