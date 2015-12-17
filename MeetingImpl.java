@@ -4,9 +4,11 @@ import java.util.Set;
 public abstract class MeetingImpl implements Meeting {
 	
 	private int id;
+	private Calendar date;
 	
 	public MeetingImpl(int id, Calendar date, Set<Contact> contacts) {
 		this.id = id;
+		this.date = date;
 	}
 	
 	@Override
@@ -16,7 +18,7 @@ public abstract class MeetingImpl implements Meeting {
 	
 	@Override 
 	public Calendar getDate() {
-		return null;
+		return this.date;
 	}
 	
 	@Override 
