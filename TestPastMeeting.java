@@ -29,4 +29,13 @@ public class TestPastMeeting {
 		Meeting myMeeting = new PastMeetingImpl(3, date, contacts, "Notes");
 		assertEquals(3, myMeeting.getId());
 	}
+	
+	@Test 
+	public void testGetDateMethod() {
+		Set<Contact> contacts = new HashSet<Contact>();
+		contacts.add(contact1);
+		Calendar date = new GregorianCalendar(2016, 0, 12); //12th Jan 2016
+		Meeting myMeeting = new PastMeetingImpl(2, date, contacts, "Notes");
+		assertEquals(date, myMeeting.getDate());
+	}
 }
