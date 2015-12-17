@@ -102,4 +102,10 @@ public class TestPastMeeting {
 			PastMeeting myMeeting = new PastMeetingImpl(i, date, contacts, "Notes");
 		}
 	}
+	
+	@Test(expected = NullPointerException.class) 
+	public void testPassingNullDate() {
+		contacts.add(contact1);
+		PastMeeting myMeeting = new PastMeetingImpl(1, null, contacts, "Notes");
+	}
 }
