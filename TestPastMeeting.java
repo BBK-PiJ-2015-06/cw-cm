@@ -11,17 +11,18 @@ public class TestPastMeeting {
 	private Contact contact1;
 	private Contact contact2;
 	private Contact contact3;
+	private Set<Contact> contacts;
 	
 	@Before
 	public void init() {
 		contact1 = new MockContact();
 		contact2 = new MockContact();
 		contact3 = new MockContact();
+		contacts = new HashSet<Contact>();
 	}
 	
 	@Test 
 	public void testGetIdMethod() {
-		Set<Contact> contacts = new HashSet<Contact>();
 		contacts.add(contact1);
 		contacts.add(contact2);
 		contacts.add(contact3);
@@ -32,7 +33,6 @@ public class TestPastMeeting {
 	
 	@Test 
 	public void testGetDateMethod() {
-		Set<Contact> contacts = new HashSet<Contact>();
 		contacts.add(contact1);
 		Calendar date = new GregorianCalendar(2015, 0, 12); //12th Jan 2015
 		PastMeeting myMeeting = new PastMeetingImpl(2, date, contacts, "Notes");
@@ -41,7 +41,6 @@ public class TestPastMeeting {
 	
 	@Test 
 	public void testGetContactsMethodAfterAddingThreeDifferentContacts() {
-		Set<Contact> contacts = new HashSet<Contact>();
 		contacts.add(contact1);
 		contacts.add(contact2);
 		contacts.add(contact3);
@@ -53,7 +52,6 @@ public class TestPastMeeting {
 	
 	@Test 
 	public void testAddingSameContactMultipleTimes() {
-		Set<Contact> contacts = new HashSet<Contact>();
 		contacts.add(contact1);
 		contacts.add(contact2);
 		contacts.add(contact1);
@@ -65,7 +63,6 @@ public class TestPastMeeting {
 	
 	@Test 
 	public void testGetNotesMethod() {
-		Set<Contact> contacts = new HashSet<Contact>();
 		contacts.add(contact1);
 		Calendar date = new GregorianCalendar(2015, 1, 12); //12th Feb 2015
 		PastMeeting myMeeting = new PastMeetingImpl(5, date, contacts, "Notes");
@@ -74,7 +71,6 @@ public class TestPastMeeting {
 	
 	@Test(timeout = 1000)
 	public void testAddingMillionContactsToMeetingFinishesBeforeOneSecond() {
-		Set<Contact> contacts = new HashSet<Contact>();
 		for(int i = 1; i <= 1000000; i++) {
 			contacts.add(new MockContact());
 		}
@@ -86,14 +82,12 @@ public class TestPastMeeting {
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testPassingEmptySetOfContacts() {
-		Set<Contact> contacts = new HashSet<Contact>();
 		Calendar date = new GregorianCalendar(2015, 6, 11); //11th Jul 2015
 		PastMeeting myMeeting = new PastMeetingImpl(9, date, contacts, "Notes");
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testPassingZeroAsId() {
-		Set<Contact> contacts = new HashSet<Contact>();
 		contacts.add(contact1);
 		Calendar date = new GregorianCalendar(2015, 6, 11); //11th Jul 2015
 		PastMeeting myMeeting = new PastMeetingImpl(0, date, contacts, "Notes");
