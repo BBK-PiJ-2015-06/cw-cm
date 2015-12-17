@@ -38,4 +38,16 @@ public class TestPastMeeting {
 		Meeting myMeeting = new PastMeetingImpl(2, date, contacts, "Notes");
 		assertEquals(date, myMeeting.getDate());
 	}
+	
+	@Test 
+	public void testGetContactsMethodAfterAddingThreeDifferentContacts() {
+		Set<Contact> contacts = new HashSet<Contact>();
+		contacts.add(contact1);
+		contacts.add(contact2);
+		contacts.add(contact3);
+		Calendar date = new GregorianCalendar(2015, 0, 10); //10th Jan 2016
+		Meeting myMeeting = new PastMeetingImpl(3, date, contacts, "Notes");
+		assertEquals(3, myMeeting.getContacts().size());
+		assertTrue(myMeeting.getContacts().containsAll(contacts));
+	}
 }
