@@ -8,6 +8,9 @@ public abstract class MeetingImpl implements Meeting {
 	private Set<Contact> attendees;
 	
 	public MeetingImpl(int id, Calendar date, Set<Contact> contacts) {
+		if(contacts.isEmpty()) {
+			throw new IllegalArgumentException("Set<Contact> must have at least 1 contact");
+		}
 		this.id = id;
 		this.date = date;
 		this.attendees = contacts;
