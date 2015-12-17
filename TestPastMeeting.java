@@ -90,4 +90,12 @@ public class TestPastMeeting {
 		Calendar date = new GregorianCalendar(2015, 6, 11); //11th Jul 2015
 		PastMeeting myMeeting = new PastMeetingImpl(9, date, contacts, "Notes");
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testPassingZeroAsId() {
+		Set<Contact> contacts = new HashSet<Contact>();
+		contacts.add(contact1);
+		Calendar date = new GregorianCalendar(2015, 6, 11); //11th Jul 2015
+		PastMeeting myMeeting = new PastMeetingImpl(0, date, contacts, "Notes");
+	}
 }
