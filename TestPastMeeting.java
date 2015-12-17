@@ -83,4 +83,11 @@ public class TestPastMeeting {
 		assertEquals(1000000, myMeeting.getContacts().size());
 		assertTrue(myMeeting.getContacts().containsAll(contacts));
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testPassingEmptySetOfContacts() {
+		Set<Contact> contacts = new HashSet<Contact>();
+		Calendar date = new GregorianCalendar(2015, 6, 11); //11th Jul 2015
+		PastMeeting myMeeting = new PastMeetingImpl(9, date, contacts, "Notes");
+	}
 }
