@@ -40,4 +40,59 @@ public class TestFutureMeeting {
 		assertEquals(3, myMeeting.getContacts().size());
 		assertTrue(myMeeting.getContacts().containsAll(contacts));
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testPassingEmptySetOfContacts() {
+		Meeting myMeeting = new FutureMeetingImpl(1, date, contacts);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testPassingZeroAsId() {
+		contacts.add(new MockContact());
+		Meeting myMeeting = new FutureMeetingImpl(0, date, contacts);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testPassingNegativeNumberAsId() {
+		contacts.add(new MockContact());
+		for(int i = -1; i > -10; i--) {
+			Meeting myMeeting = new FutureMeetingImpl(i, date, contacts);
+		}
+	}
+	
+	@Test(expected = NullPointerException.class) 
+	public void testPassingNullDate() {
+		contacts.add(new MockContact());
+		Meeting myMeeting = new FutureMeetingImpl(1, null, contacts);
+	}
+	
+	@Test(expected = NullPointerException.class) 
+	public void testPassingNullContacts() {
+		Meeting myMeeting = new FutureMeetingImpl(1, date, null);
+	}
+	
+	@Test(expected = NullPointerException.class) 
+	public void testPassingNullAsAllParams() {
+		Meeting myMeeting = new FutureMeetingImpl(1, null, null);
+	}
+	
+	@Test(expected = IllegalArgumentException.class) 
+	public void testIdValidityCheckedFirst() {
+		Meeting myMeeting = new FutureMeetingImpl(0, null, null);
+	}
+	
+	@Test(expected = NullPointerException.class) 
+	public void testDateValidityCheckedSecond() {
+		Meeting myMeeting = new FutureMeetingImpl(1, null, null);
+	}
+	
+	@Test(expected = NullPointerException.class) 
+	public void testContactNullValidityCheckedLast() {
+		Meeting myMeeting = new FutureMeetingImpl(1, date, null);
+	}
+	
+	@Test(expected = IllegalArgumentException.class) 
+	public void testContactEmptyValidityCheckedFourth() {
+		Meeting myMeeting = new FutureMeetingImpl(1, date, contacts);
+	}
 }
