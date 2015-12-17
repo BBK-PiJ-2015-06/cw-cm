@@ -50,4 +50,16 @@ public class TestPastMeeting {
 		assertEquals(3, myMeeting.getContacts().size());
 		assertTrue(myMeeting.getContacts().containsAll(contacts));
 	}
+	
+	@Test 
+	public void testAddingSameContactMultipleTimes() {
+		Set<Contact> contacts = new HashSet<Contact>();
+		contacts.add(contact1);
+		contacts.add(contact2);
+		contacts.add(contact1);
+		Calendar date = new GregorianCalendar(2015, 0, 10); //10th Jan 2016
+		Meeting myMeeting = new PastMeetingImpl(3, date, contacts, "Notes");
+		assertEquals(2, myMeeting.getContacts().size());
+		assertTrue(myMeeting.getContacts().containsAll(contacts));
+	}
 }
