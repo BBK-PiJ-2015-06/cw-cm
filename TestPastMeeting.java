@@ -25,7 +25,7 @@ public class TestPastMeeting {
 		contacts.add(contact1);
 		contacts.add(contact2);
 		contacts.add(contact3);
-		Calendar date = new GregorianCalendar(2016, 0, 10); //10th Jan 2016
+		Calendar date = new GregorianCalendar(2015, 0, 10); //10th Jan 2016
 		Meeting myMeeting = new PastMeetingImpl(3, date, contacts, "Notes");
 		assertEquals(3, myMeeting.getId());
 	}
@@ -34,7 +34,7 @@ public class TestPastMeeting {
 	public void testGetDateMethod() {
 		Set<Contact> contacts = new HashSet<Contact>();
 		contacts.add(contact1);
-		Calendar date = new GregorianCalendar(2016, 0, 12); //12th Jan 2016
+		Calendar date = new GregorianCalendar(2015, 0, 12); //12th Jan 2016
 		Meeting myMeeting = new PastMeetingImpl(2, date, contacts, "Notes");
 		assertEquals(date, myMeeting.getDate());
 	}
