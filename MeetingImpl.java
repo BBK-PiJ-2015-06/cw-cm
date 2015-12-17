@@ -11,7 +11,7 @@ public abstract class MeetingImpl implements Meeting {
 		if(contacts.isEmpty()) {
 			throw new IllegalArgumentException("Set<Contact> must have at least 1 contact");
 		}
-		if(id == 0) {
+		if(id <= 0) {
 			throw new IllegalArgumentException("ID cannot be zero");
 		}
 		this.id = id;
