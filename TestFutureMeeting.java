@@ -23,4 +23,21 @@ public class TestFutureMeeting {
 		Meeting myMeeting = new FutureMeetingImpl(1, date, contacts);
 		assertEquals(1, myMeeting.getId());
 	}
+	
+	@Test 
+	public void testGetDateMethod() {
+		contacts.add(new MockContact());
+		Meeting myMeeting = new FutureMeetingImpl(1, date, contacts);
+		assertEquals(date, myMeeting.getDate());
+	}
+	
+	@Test 
+	public void testGetContactsMethodAfterAddingThreeDifferentContacts() {
+		contacts.add(new MockContact());
+		contacts.add(new MockContact());
+		contacts.add(new MockContact());
+		Meeting myMeeting = new FutureMeetingImpl(1, date, contacts);
+		assertEquals(3, myMeeting.getContacts().size());
+		assertTrue(myMeeting.getContacts().containsAll(contacts));
+	}
 }
