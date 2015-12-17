@@ -5,7 +5,6 @@
  *
  * @author George Shiangoli
  */
-
 public class ContactImpl implements Contact {
 	
 	private int id;
