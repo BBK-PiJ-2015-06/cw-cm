@@ -6,8 +6,8 @@ import java.util.Set;
  * which is defined in section 3.4 of the document for Assignment 
  * 3 - Contact Manager.
  *
- * A PastMeetingImpl is a class that extends MeetinImpl and so inheriting all
- * of the functionality of this abstract class. PastMeetingImpl provides an 
+ * A PastMeetingImpl is a class that extends MeetingImpl and in doing so, inherits 
+ * all of the functionality of this abstract class. PastMeetingImpl provides an 
  * additional field 'notes' and one additional method getNotes() enabling objects
  * of this class to store and retrieve notes made about meetings that have already
  * occured.
