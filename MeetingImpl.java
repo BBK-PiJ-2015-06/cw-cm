@@ -3,11 +3,15 @@ import java.util.Set;
 
 public abstract class MeetingImpl implements Meeting {
 	
-	public MeetingImpl(int id, Calendar date, Set<Contact> contacts) {}
+	private int id;
+	
+	public MeetingImpl(int id, Calendar date, Set<Contact> contacts) {
+		this.id = id;
+	}
 	
 	@Override
 	public int getId() {
-		return -1;
+		return this.id;
 	}
 	
 	@Override 
