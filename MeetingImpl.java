@@ -12,7 +12,10 @@ public abstract class MeetingImpl implements Meeting {
 			throw new IllegalArgumentException("Set<Contact> must have at least 1 contact");
 		}
 		if(id <= 0) {
-			throw new IllegalArgumentException("ID cannot be zero");
+			throw new IllegalArgumentException("Meeting ID cannot be less than 1");
+		}
+		if(date == null) {
+			throw new NullPointerException("Parameters cannot be null");
 		}
 		this.id = id;
 		this.date = date;
