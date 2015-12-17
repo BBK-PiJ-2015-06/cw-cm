@@ -126,4 +126,33 @@ public class TestPastMeeting {
 	public void testPassingNullAsAllParams() {
 		PastMeeting myMeeting = new PastMeetingImpl(1, null, null, null);
 	}
+	
+	@Test(expected = IllegalArgumentException.class) 
+	public void testIdValidityCheckedFirst() {
+		PastMeeting myMeeting = new PastMeetingImpl(0, null, null, null);
+	}
+	
+	@Test(expected = NullPointerException.class) 
+	public void testDateValidityCheckedSecond() {
+		PastMeeting myMeeting = new PastMeetingImpl(1, null, null, null);
+	}
+	
+	@Test(expected = NullPointerException.class) 
+	public void testContactNullValidityCheckedThird() {
+		Calendar date = new GregorianCalendar(2015, 6, 11); //11th Jul 2015
+		PastMeeting myMeeting = new PastMeetingImpl(1, date, null, null);
+	}
+	
+	@Test(expected = IllegalArgumentException.class) 
+	public void testContactEmptyValidityCheckedFourth() {
+		Calendar date = new GregorianCalendar(2015, 6, 11); //11th Jul 2015
+		PastMeeting myMeeting = new PastMeetingImpl(1, date, contacts, null);
+	}
+	
+	@Test(expected = NullPointerException.class) 
+	public void testNotesValidityCheckedLast() {
+		contacts.add(contact1);
+		Calendar date = new GregorianCalendar(2015, 6, 11); //11th Jul 2015
+		PastMeeting myMeeting = new PastMeetingImpl(1, date, contacts, null);
+	}
 }
