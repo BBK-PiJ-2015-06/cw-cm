@@ -3,8 +3,7 @@ import java.util.Set;
 
 /**
  * A FutureMeetingImpl is an implementation of the interface FutureMeeting, 
- * which is defined in section 3.5 of the document for Assignment 
- * 3 - Contact Manager.
+ * which is defined in section 3.5 of the document for Assignment 3 - Contact Manager.
  *
  * A FutureMeetingImpl extends the abstract class MeetingImpl, but provides no 
  * new methods in addition to those inherited from MeetingImpl. The functinality

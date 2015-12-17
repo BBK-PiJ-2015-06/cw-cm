@@ -1,7 +1,6 @@
 /**
  * A ContactImpl is an implementation of the interface Contact, 
- * which is defined in section 3.2 of the document for Assignment 
- * 3 - Contact Manager.
+ * which is defined in section 3.2 of the document for Assignment 3 - Contact Manager.
  *
  * @author George Shiangoli
  */

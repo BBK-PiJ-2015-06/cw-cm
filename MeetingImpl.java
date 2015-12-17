@@ -3,8 +3,7 @@ import java.util.Set;
 
 /**
  * A MeetingImpl is an implementation of the interface Meeting, 
- * which is defined in section 3.3 of the document for Assignment 
- * 3 - Contact Manager.
+ * which is defined in section 3.3 of the document for Assignment 3 - Contact Manager.
  *
  * A MeetingImpl is an abstract class and so objects of type MeetingImpl
  * cannot be created. However this class provides all of the basic functionality

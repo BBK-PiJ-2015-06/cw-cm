@@ -3,8 +3,7 @@ import java.util.Set;
 
 /**
  * A PastMeetingImpl is an implementation of the interface PastMeeting, 
- * which is defined in section 3.4 of the document for Assignment 
- * 3 - Contact Manager.
+ * which is defined in section 3.4 of the document for Assignment 3 - Contact Manager.
  *
  * A PastMeetingImpl is a class that extends MeetingImpl and in doing so, inherits 
  * all of the functionality of this abstract class. PastMeetingImpl provides an 
