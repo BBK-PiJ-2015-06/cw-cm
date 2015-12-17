@@ -114,4 +114,11 @@ public class TestPastMeeting {
 		Calendar date = new GregorianCalendar(2015, 6, 11); //11th Jul 2015
 		PastMeeting myMeeting = new PastMeetingImpl(1, date, null, "Notes");
 	}
+	
+	@Test(expected = NullPointerException.class) 
+	public void testPassingNullNotes() {
+		contacts.add(contact1);
+		Calendar date = new GregorianCalendar(2015, 6, 11); //11th Jul 2015
+		PastMeeting myMeeting = new PastMeetingImpl(1, date, contacts, null);
+	}
 }
