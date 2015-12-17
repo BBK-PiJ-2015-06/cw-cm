@@ -20,7 +20,7 @@ public class PastMeetingImpl extends MeetingImpl implements PastMeeting {
 	
 	/**
 	 * The constructor of PastMeetingImpl accepts four parameters: the ID and date
-	 * of the meeting, the Set of contacts that attend(ed) the meeting and any notes
+	 * of the meeting, the Set of contacts that attended the meeting and any notes
 	 * that may have been recorded during / after the meeting.
 	 *
 	 * Each parameter is checked for validity in turn, starting with the ID, followed
@@ -34,9 +34,9 @@ public class PastMeetingImpl extends MeetingImpl implements PastMeeting {
 	 *
 	 * This method calls the constructor of the parent class MeetingImpl.
 	 *
-	 * @param id the unique ID of the meeting being created
-	 * @param date the date at which the meeting was or will be held
-	 * @param contacts a set of non identical contacts that attend this meeting
+	 * @param id the unique ID of the meeting
+	 * @param date the date at which the meeting was held
+	 * @param contacts a set of non identical contacts that attended this meeting
 	 * @param notes the notes made about the meeting
 	 * @throws IllegalArgumentException if the ID provided is less than 1 and / or the 
 	 *         Set of contacts is empty
