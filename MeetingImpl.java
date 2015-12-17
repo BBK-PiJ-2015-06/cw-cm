@@ -5,10 +5,12 @@ public abstract class MeetingImpl implements Meeting {
 	
 	private int id;
 	private Calendar date;
+	private Set<Contact> attendees;
 	
 	public MeetingImpl(int id, Calendar date, Set<Contact> contacts) {
 		this.id = id;
 		this.date = date;
+		this.attendees = contacts;
 	}
 	
 	@Override
@@ -23,6 +25,6 @@ public abstract class MeetingImpl implements Meeting {
 	
 	@Override 
 	public Set<Contact> getContacts() {
-		return null;
+		return this.attendees;
 	}
 }
