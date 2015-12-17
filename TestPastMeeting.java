@@ -71,4 +71,16 @@ public class TestPastMeeting {
 		PastMeeting myMeeting = new PastMeetingImpl(5, date, contacts, "Notes");
 		assertEquals("Notes", myMeeting.getNotes());
 	}
+	
+	@Test(timeout = 1000)
+	public void testAddingMillionContactsToMeetingFinishesBeforeOneSecond() {
+		Set<Contact> contacts = new HashSet<Contact>();
+		for(int i = 1; i <= 1000000; i++) {
+			contacts.add(new MockContact());
+		}
+		Calendar date = new GregorianCalendar(2015, 1, 12); //12th Feb 2015
+		PastMeeting myMeeting = new PastMeetingImpl(6, date, contacts, "Notes");
+		assertEquals(1000000, myMeeting.getContacts().size());
+		assertTrue(myMeeting.getContacts().containsAll(contacts));
+	}
 }
