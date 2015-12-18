@@ -143,4 +143,15 @@ public class TestContactManager {
 		manager.addNewContact("Arsene", "Notes");
 		manager.getContacts(1,2,3);
 	}
+	
+	@Test 
+	public void testPassingSingleIdToGetContacts() {
+		manager.addNewContact("Mauricio", "Notes");
+		manager.addNewContact("Arsene", "Notes");
+		manager.addNewContact("Jose", "Notes");
+		manager.addNewContact("Louis", "Notes");
+		Set<Contact> output = manager.getContacts(1,2);
+		assertEquals(2, output.size());
+		System.out.println(output);
+	}
 }
