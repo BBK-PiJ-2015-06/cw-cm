@@ -8,16 +8,21 @@ public class ContactManagerImpl implements ContactManager {
 	
 	private Set<Contact> contacts;
 	private List<Meeting> meetings;
+	private Calendar launchTime;
 	
 	public ContactManagerImpl() {
 		this.contacts = new HashSet<Contact>();
 		this.meetings = new ArrayList<Meeting>();
+		this.launchTime = Calendar.getInstance();
 	}
 	
 	@Override
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
 		int newMeetingId = this.meetings.size() + 1;
 		FutureMeeting newMeeting = new FutureMeetingImpl(newMeetingId, date, contacts);
+		if(date.before(this.launchTime)) {
+			throw new IllegalArgumentException("Cannot create future meeting with past date");
+		}
 		this.meetings.add(newMeeting);
 		return newMeeting.getId();
 	}
