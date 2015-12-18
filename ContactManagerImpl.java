@@ -12,6 +12,11 @@ public class ContactManagerImpl implements ContactManager {
 	}
 	
 	@Override
+	public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
+		return 1;
+	}
+	
+	@Override
 	public int addNewContact(String name, String notes) {
 		if(name.equals("") || notes.equals("")) {
 			throw new IllegalArgumentException("Parameters cannot be empty strings");
