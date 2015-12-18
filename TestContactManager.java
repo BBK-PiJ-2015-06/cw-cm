@@ -152,6 +152,60 @@ public class TestContactManager {
 		manager.addNewContact("Louis", "Notes");
 		Set<Contact> output = manager.getContacts(1,2);
 		assertEquals(2, output.size());
-		System.out.println(output);
+		for(Contact c : output) {
+			System.out.println(c.getName());
+		}
+	}
+	
+	@Test 
+	public void testPassingSingleIdToGetContacts2() {
+		manager.addNewContact("Mauricio", "Notes");
+		manager.addNewContact("Arsene", "Notes");
+		manager.addNewContact("Jose", "Notes");
+		manager.addNewContact("Louis", "Notes");
+		Set<Contact> output = manager.getContacts(1,2,3,4);
+		assertEquals(4, output.size());
+		for(Contact c : output) {
+			System.out.println(c.getName());
+		}
+	}
+	
+	@Test 
+	public void testPassingSingleIdToGetContacts3() {
+		manager.addNewContact("Mauricio", "Notes");
+		manager.addNewContact("Arsene", "Notes");
+		manager.addNewContact("Jose", "Notes");
+		manager.addNewContact("Louis", "Notes");
+		Set<Contact> output = manager.getContacts(2,4);
+		assertEquals(2, output.size());
+		for(Contact c : output) {
+			System.out.println(c.getName());
+		}
+	}
+	
+	@Test 
+	public void testPassingSingleIdToGetContacts4() {
+		manager.addNewContact("Mauricio", "Notes");
+		manager.addNewContact("Arsene", "Notes");
+		manager.addNewContact("Jose", "Notes");
+		manager.addNewContact("Louis", "Notes");
+		Set<Contact> output = manager.getContacts(1,3);
+		assertEquals(2, output.size());
+		for(Contact c : output) {
+			System.out.println(c.getName());
+		}
+	}
+	
+	@Test 
+	public void testPassingSingleIdToGetContacts5() {
+		manager.addNewContact("Mauricio", "Notes");
+		manager.addNewContact("Arsene", "Notes");
+		manager.addNewContact("Jose", "Notes");
+		manager.addNewContact("Louis", "Notes");
+		Set<Contact> output = manager.getContacts(4);
+		assertEquals(1, output.size());
+		for(Contact c : output) {
+			System.out.println(c.getName());
+		}
 	}
 }
