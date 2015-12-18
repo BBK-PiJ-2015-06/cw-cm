@@ -42,11 +42,13 @@ public class ContactManagerImpl implements ContactManager {
 	
 	@Override
 	public Set<Contact> getContacts(int... ids) {
-		if(ids == null) {
-			throw new NullPointerException("Parameter cannot be null");
-		}
 		if(ids.length == 0) {
 			throw new IllegalArgumentException("Must provide at least 1 ID");
+		}
+		for(int i : ids) {
+			if(i == 0) {
+				throw new IllegalArgumentException("A provided ID does not correspond to a real contact");
+			}
 		}
 		return null;
 	}
