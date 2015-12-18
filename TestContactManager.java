@@ -59,4 +59,12 @@ public class TestContactManager {
 		assertEquals(0, output.size());
 	}
 	
+	@Test 
+	public void testPassingEmptyStringToGetContacts() {
+		manager.addNewContact("Name", "Notes");
+		manager.addNewContact("Name", "Notes");
+		manager.addNewContact("Name", "Notes");
+		assertEquals(3, manager.getContacts("").size());
+	}
+	
 }
