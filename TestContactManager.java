@@ -1,5 +1,6 @@
 import org.junit.*;
 import static org.junit.Assert.*;
+import java.util.Set;
 
 public class TestContactManager {
 	
@@ -50,6 +51,12 @@ public class TestContactManager {
 	@Test(expected = NullPointerException.class)
 	public void testAddingContactWithNullParams() {
 		manager.addNewContact(null, null);
+	}
+	
+	@Test 
+	public void testPassingEmptyStringToGetContactsOnEmptyContactSet() {
+		Set<Contact> output = manager.getContacts("");
+		assertEquals(0, output.size());
 	}
 	
 }
