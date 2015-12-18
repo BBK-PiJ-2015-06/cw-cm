@@ -39,4 +39,21 @@ public class TestContactManagerMeetingMethods {
 		attendees = manager.getContacts(5,8);
 		assertEquals(2, manager.addFutureMeeting(attendees, date));
 	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testAddingFutureMeetingWithNullContacts() {
+		Calendar date = new GregorianCalendar(2016, 0, 10);
+		manager.addFutureMeeting(null, date);
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testAddingFutureMeetingWithNullDate() {
+		Set<Contact> attendees = manager.getContacts(1,2,3,4);
+		manager.addFutureMeeting(attendees, null);
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testAddingFutureMeetingWithNullParams() {
+		manager.addFutureMeeting(null, null);
+	}
 }
