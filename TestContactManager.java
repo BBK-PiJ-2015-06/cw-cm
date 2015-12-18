@@ -153,7 +153,8 @@ public class TestContactManager {
 		Set<Contact> output = manager.getContacts(1,2);
 		assertEquals(2, output.size());
 		for(Contact c : output) {
-			System.out.println(c.getName());
+			assertTrue((c.getName().equals("Arsene") && c.getId() == 2) || (c.getName().equals("Mauricio") && c.getId() == 1));
+
 		}
 	}
 	
@@ -165,9 +166,6 @@ public class TestContactManager {
 		manager.addNewContact("Louis", "Notes");
 		Set<Contact> output = manager.getContacts(1,2,3,4);
 		assertEquals(4, output.size());
-		for(Contact c : output) {
-			System.out.println(c.getName());
-		}
 	}
 	
 	@Test 
@@ -179,7 +177,7 @@ public class TestContactManager {
 		Set<Contact> output = manager.getContacts(2,4);
 		assertEquals(2, output.size());
 		for(Contact c : output) {
-			System.out.println(c.getName());
+			assertTrue((c.getName().equals("Arsene") && c.getId() == 2) || (c.getName().equals("Louis") && c.getId() == 4));
 		}
 	}
 	
@@ -192,7 +190,7 @@ public class TestContactManager {
 		Set<Contact> output = manager.getContacts(1,3);
 		assertEquals(2, output.size());
 		for(Contact c : output) {
-			System.out.println(c.getName());
+			assertTrue((c.getName().equals("Mauricio") && c.getId() == 1) || (c.getName().equals("Jose") && c.getId() == 3));
 		}
 	}
 	
@@ -205,7 +203,7 @@ public class TestContactManager {
 		Set<Contact> output = manager.getContacts(4);
 		assertEquals(1, output.size());
 		for(Contact c : output) {
-			System.out.println(c.getName());
+			assertTrue(c.getName().equals("Louis") && c.getId() == 4);
 		}
 	}
 }
