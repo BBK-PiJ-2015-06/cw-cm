@@ -136,4 +136,11 @@ public class TestContactManager {
 		manager.addNewContact("Mauricio", "Notes");
 		manager.getContacts(2);
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testPassingInvalidIdToGetContactsAmongstValidIds() {
+		manager.addNewContact("Mauricio", "Notes");
+		manager.addNewContact("Arsene", "Notes");
+		manager.getContacts(1,2,3);
+	}
 }
