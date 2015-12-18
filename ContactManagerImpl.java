@@ -21,4 +21,9 @@ public class ContactManagerImpl implements ContactManager {
 		contacts.add(newContact);
 		return newContact.getId();
 	}
+	
+	@Override 
+	public Set<Contact> getContacts(String name) {
+		return this.contacts;
+	}
 }
