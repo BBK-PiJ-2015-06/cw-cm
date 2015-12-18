@@ -114,4 +114,15 @@ public class TestContactManager {
 		manager.addNewContact("Mauricio", "Notes");
 		manager.getContacts(0);
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testPassingNegativeIdToGetContacts() {
+		manager.getContacts(1, -1);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testPassingNegativeIdToGetContactsOnNonEmptySet() {
+		manager.addNewContact("Mauricio", "Notes");
+		manager.getContacts(1, -1);
+	}
 }
