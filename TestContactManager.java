@@ -36,4 +36,20 @@ public class TestContactManager {
 	public void testAddingContactWithAllEmptyStrings() {
 		manager.addNewContact("", "");
 	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testAddingContactWithNullName() {
+		manager.addNewContact(null, "Notes");
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testAddingContactWithNullNotes() {
+		manager.addNewContact("Name", null);
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testAddingContactWithNullParams() {
+		manager.addNewContact(null, null);
+	}
+	
 }
