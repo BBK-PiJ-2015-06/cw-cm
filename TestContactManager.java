@@ -71,7 +71,8 @@ public class TestContactManager {
 	
 	@Test(expected = NullPointerException.class) 
 	public void testPassingNullValueToGetContacts() {
-		manager.getContacts(null);
+		String name = null;
+		manager.getContacts(name);
 	} 
 	
 	@Test 
