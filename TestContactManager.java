@@ -77,4 +77,14 @@ public class TestContactManager {
 		assertEquals(0, manager.getContacts("Hugo").size());
 	}
 	
+	@Test 
+	public void testPassingNonEmptyStringToGetContacts() {
+		manager.addNewContact("Mauricio", "Notes");
+		manager.addNewContact("Arsene", "Notes");
+		manager.addNewContact("Jose", "Notes");
+		assertEquals(3, manager.getContacts("").size());
+		assertEquals(1, manager.getContacts("Mauricio").size());
+		assertEquals(2, manager.getContacts("se").size());
+		assertEquals(0, manager.getContacts("Brendan").size());
+	}
 }
