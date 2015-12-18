@@ -10,6 +10,6 @@ public class ContactManagerImpl implements ContactManager {
 	
 	@Override
 	public int addNewContact(String name, String notes) {
-		return -1;
+		return 1;
 	}
 }
