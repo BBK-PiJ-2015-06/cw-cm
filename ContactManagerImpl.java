@@ -1,19 +1,25 @@
 import java.util.Calendar;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
 
 public class ContactManagerImpl implements ContactManager {
 	
 	private Set<Contact> contacts;
+	private List<Meeting> meetings;
 	
 	public ContactManagerImpl() {
 		this.contacts = new HashSet<Contact>();
+		this.meetings = new ArrayList<Meeting>();
 	}
 	
 	@Override
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
-		return 1;
+		int newMeetingId = this.meetings.size() + 1;
+		FutureMeeting newMeeting = new FutureMeetingImpl(newMeetingId, date, contacts);
+		this.meetings.add(newMeeting);
+		return newMeeting.getId();
 	}
 	
 	@Override
@@ -23,7 +29,7 @@ public class ContactManagerImpl implements ContactManager {
 		}
 		int newContactId = this.contacts.size() + 1;
 		Contact newContact = new ContactImpl(newContactId, name, notes);
-		contacts.add(newContact);
+		this.contacts.add(newContact);
 		return newContact.getId();
 	}
 	
