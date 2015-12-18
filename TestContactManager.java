@@ -62,7 +62,9 @@ public class TestContactManager {
 	@Test 
 	public void testPassingEmptyStringToGetContacts() {
 		manager.addNewContact("Name", "Notes");
+		assertEquals(1, manager.getContacts("").size());
 		manager.addNewContact("Name", "Notes");
+		assertEquals(2, manager.getContacts("").size());
 		manager.addNewContact("Name", "Notes");
 		assertEquals(3, manager.getContacts("").size());
 	}
@@ -94,5 +96,10 @@ public class TestContactManager {
 		manager.addNewContact("Arsene", "Notes");
 		manager.addNewContact("Jose", "Notes");
 		assertEquals(0, manager.getContacts("ee").size());
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testPassingNoIdsToGetContacts() {
+		manager.getContacts();
 	}
 }
