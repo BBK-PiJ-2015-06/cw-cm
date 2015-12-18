@@ -206,4 +206,30 @@ public class TestContactManager {
 			assertTrue(c.getName().equals("Louis") && c.getId() == 4);
 		}
 	}
+	
+	@Test 
+	public void testPassingNonEmptyStringToGetContacts3() {
+		manager.addNewContact("Mauricio", "Notes");
+		manager.addNewContact("Arsene", "Notes");
+		manager.addNewContact("Jose", "Notes");
+		manager.addNewContact("Louis", "Notes");
+		Set<Contact> output = manager.getContacts("Louis");
+		assertEquals(1, output.size());
+		for(Contact c : output) {
+			assertTrue(c.getName().equals("Louis") && c.getId() == 4);
+		}
+	}
+	
+	@Test 
+	public void testPassingNonEmptyStringToGetContacts4() {
+		manager.addNewContact("Mauricio", "Notes");
+		manager.addNewContact("Arsene", "Notes");
+		manager.addNewContact("Jose", "Notes");
+		manager.addNewContact("Louis", "Notes");
+		Set<Contact> output = manager.getContacts("se");
+		assertEquals(2, output.size());
+		for(Contact c : output) {
+			assertTrue((c.getName().equals("Arsene") && c.getId() == 2) || (c.getName().equals("Jose") && c.getId() == 3));
+		}
+	}
 }
