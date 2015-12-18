@@ -29,4 +29,14 @@ public class TestContactManagerMeetingMethods {
 		Set<Contact> attendees = manager.getContacts(1,2,3,4);
 		assertEquals(1, manager.addFutureMeeting(attendees, date));
 	}
+	
+	@Test 
+	public void testAddingMultipleFutureMeetings() {
+		Calendar date = new GregorianCalendar(2016, 0, 10);
+		Set<Contact> attendees = manager.getContacts(1,2,3,4);
+		assertEquals(1, manager.addFutureMeeting(attendees, date));
+		date = new GregorianCalendar(2016, 0, 14);
+		attendees = manager.getContacts(5,8);
+		assertEquals(2, manager.addFutureMeeting(attendees, date));
+	}
 }
