@@ -45,11 +45,17 @@ public class ContactManagerImpl implements ContactManager {
 		if(ids.length == 0) {
 			throw new IllegalArgumentException("Must provide at least 1 ID");
 		}
+		Set<Contact> output = new HashSet<Contact>();
 		for(int i : ids) {
 			if(i <= 0 || i > this.contacts.size()) {
 				throw new IllegalArgumentException("A provided ID does not correspond to a real contact");
 			}
+			for(Contact c : contacts) {
+				if(i == c.getId()) {
+					output.add(c);
+				}
+			}
 		}
-		return null;
+		return output;
 	}
 }
