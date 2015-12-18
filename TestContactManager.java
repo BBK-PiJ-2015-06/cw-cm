@@ -99,8 +99,19 @@ public class TestContactManager {
 		assertEquals(0, manager.getContacts("ee").size());
 	}
 	
-	@Test (expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testPassingNoIdsToGetContacts() {
 		manager.getContacts();
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testPassingZeroIdToGetContacts() {
+		manager.getContacts(0);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testPassingZeroIdToGetContactsOnNonEmptySet() {
+		manager.addNewContact("Mauricio", "Notes");
+		manager.getContacts(0);
 	}
 }
