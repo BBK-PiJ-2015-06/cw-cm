@@ -27,6 +27,16 @@ public class ContactManagerImpl implements ContactManager {
 		if(name == null) {
 			throw new NullPointerException("Parameter cannot be null");
 		}
-		return this.contacts;
+		if(name.equals("")) {
+			return this.contacts;
+		} else {
+			Set<Contact> output = new HashSet<Contact>();
+			for(Contact c : contacts) {
+				if(c.getName().contains(name)) {
+					output.add(c);
+				}
+			}
+			return output;
+		}
 	}
 }
