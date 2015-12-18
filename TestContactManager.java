@@ -72,4 +72,9 @@ public class TestContactManager {
 		manager.getContacts(null);
 	} 
 	
+	@Test 
+	public void testPassingNonEmptyStringToGetContactsOnEmptyContactSet() {
+		assertEquals(0, manager.getContacts("Hugo").size());
+	}
+	
 }
