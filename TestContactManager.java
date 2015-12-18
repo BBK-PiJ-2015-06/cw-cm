@@ -21,4 +21,19 @@ public class TestContactManager {
 		assertEquals(2, manager.addNewContact("Name2", "Notes2"));
 		assertEquals(3, manager.addNewContact("Name3", "Notes3"));
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testAddingContactWithEmptyStringName() {
+		manager.addNewContact("", "Notes");
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testAddingContactWithEmptyStringNotes() {
+		manager.addNewContact("Name", "");
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testAddingContactWithAllEmptyStrings() {
+		manager.addNewContact("", "");
+	}
 }
