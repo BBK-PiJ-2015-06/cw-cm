@@ -46,7 +46,12 @@ public class ContactManagerImpl implements ContactManager {
 			throw new IllegalArgumentException("Must provide at least 1 ID");
 		}
 		Set<Contact> output = new HashSet<Contact>();
-		for(int i : ids) {
+		
+		//loops through ids and adds the correct contacts to the output set
+		//whilst also checking each ID for validity. Can split these these
+		//two functions into separate 'for' loops for improved clarity, but 
+		//these have been combined in order to reduce repetitve code.
+		for(int i : ids) { 
 			if(i <= 0 || i > this.contacts.size()) {
 				throw new IllegalArgumentException("A provided ID does not correspond to a real contact");
 			}
