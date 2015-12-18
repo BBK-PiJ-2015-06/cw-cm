@@ -59,8 +59,16 @@ public class TestContactManagerMeetingMethods {
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddingFutureMeetingWithPastDate() {
-		Calendar date = new GregorianCalendar(2015, 0, 10);
+		Calendar date = new GregorianCalendar(2015, 11, 10);
 		Set<Contact> attendees = manager.getContacts(5,8);
+		manager.addFutureMeeting(attendees, date);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testAddingFutureMeetingWithUnknownContact() {
+		Calendar date = new GregorianCalendar(2016, 0, 10);
+		Set<Contact> attendees = manager.getContacts(5,8);
+		attendees.add(new MockContact());
 		manager.addFutureMeeting(attendees, date);
 	}
 }
