@@ -67,4 +67,9 @@ public class TestContactManager {
 		assertEquals(3, manager.getContacts("").size());
 	}
 	
+	@Test(expected = NullPointerException.class) 
+	public void testPassingNullValueToGetContacts() {
+		manager.getContacts(null);
+	} 
+	
 }
