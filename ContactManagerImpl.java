@@ -46,7 +46,7 @@ public class ContactManagerImpl implements ContactManager {
 			throw new IllegalArgumentException("Must provide at least 1 ID");
 		}
 		for(int i : ids) {
-			if(i == 0) {
+			if(i <= 0) {
 				throw new IllegalArgumentException("A provided ID does not correspond to a real contact");
 			}
 		}
