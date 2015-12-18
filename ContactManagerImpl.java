@@ -39,4 +39,15 @@ public class ContactManagerImpl implements ContactManager {
 			return output;
 		}
 	}
+	
+	@Override
+	public Set<Contact> getContacts(int... ids) {
+		if(ids == null) {
+			throw new NullPointerException("Parameter cannot be null");
+		}
+		if(ids.length == 0) {
+			throw new IllegalArgumentException("Must provide at least 1 ID");
+		}
+		return null;
+	}
 }
