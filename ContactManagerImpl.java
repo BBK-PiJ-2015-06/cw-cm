@@ -32,7 +32,11 @@ public class ContactManagerImpl implements ContactManager {
 	
 	@Override
 	public PastMeeting getPastMeeting(int id) {
-		return (PastMeeting)this.meetings.get(id - 1);
+		if(id <= 0 || id > this.meetings.size()) {
+			return null;
+		} else {
+			return (PastMeeting)this.meetings.get(id - 1);
+		}
 	}
 	
 	@Override 
