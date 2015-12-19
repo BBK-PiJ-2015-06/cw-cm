@@ -30,6 +30,9 @@ public class ContactManagerImpl implements ContactManager {
 		return newMeeting.getId();
 	}
 	
+	@Override 
+	public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text) {}
+	
 	@Override
 	public int addNewContact(String name, String notes) {
 		if(name.equals("") || notes.equals("")) {
