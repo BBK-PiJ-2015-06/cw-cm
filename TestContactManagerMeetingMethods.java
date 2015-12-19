@@ -1,6 +1,7 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.util.Set;
+import java.util.HashSet;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -69,6 +70,13 @@ public class TestContactManagerMeetingMethods {
 		Calendar date = new GregorianCalendar(2016, 0, 10);
 		Set<Contact> attendees = manager.getContacts(5,8);
 		attendees.add(new MockContact());
+		manager.addFutureMeeting(attendees, date);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testAddingFutureMeetingWithEmptyContacts() {
+		Calendar date = new GregorianCalendar(2016, 0, 10);
+		Set<Contact> attendees = new HashSet<Contact>();
 		manager.addFutureMeeting(attendees, date);
 	}
 }
