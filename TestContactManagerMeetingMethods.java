@@ -144,4 +144,16 @@ public class TestContactManagerMeetingMethods {
 		attendees.add(new MockContact());
 		manager.addNewPastMeeting(attendees, date, "Notes");
 	}
+	
+	@Test 
+	public void testGetPastMeeting() {
+		Calendar date = new GregorianCalendar(2015, 6, 11);
+		Set<Contact> attendees = manager.getContacts(1,2,3,4);
+		manager.addNewPastMeeting(attendees, date, "Notes");
+		PastMeeting meeting = manager.getPastMeeting(1);
+		assertEquals(1, meeting.getId());
+		assertEquals(date, meeting.getDate());
+		assertEquals(attendees, meeting.getContacts());
+		assertEquals("Notes", meeting.getNotes());
+	}
 }
