@@ -79,4 +79,14 @@ public class TestContactManagerMeetingMethods {
 		Set<Contact> attendees = new HashSet<Contact>();
 		manager.addFutureMeeting(attendees, date);
 	}
+	
+	@Test 
+	public void testAddingPastMeetingAsFirstMeeting() {
+		Set<Contact> attendees = manager.getContacts(1,2,3,4);
+		Calendar date = new GregorianCalendar(2015, 6, 11);
+		manager.addNewPastMeeting(attendees, date, "Notes");
+		date = new GregorianCalendar(2016, 0, 10);
+		attendees = manager.getContacts(3,4);
+		assertEquals(2, manager.addFutureMeeting(attendees, date));
+	}
 }
