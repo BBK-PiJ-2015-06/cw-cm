@@ -204,7 +204,7 @@ public class TestContactManagerMeetingMethods {
 	
 	@Test 
 	public void testGetFutureMeetingWithZeroId() {
-		Calendar date = new GregorianCalendar(2015, 6, 11);
+		Calendar date = new GregorianCalendar(2016, 6, 11);
 		Set<Contact> attendees = manager.getContacts(1,2,3,4);
 		manager.addFutureMeeting(attendees, date);
 		assertEquals(null, manager.getFutureMeeting(0));
@@ -212,7 +212,7 @@ public class TestContactManagerMeetingMethods {
 	
 	@Test 
 	public void testGetFutureMeetingWithNegativeId() {
-		Calendar date = new GregorianCalendar(2015, 6, 11);
+		Calendar date = new GregorianCalendar(2016, 6, 11);
 		Set<Contact> attendees = manager.getContacts(1,2,3,4);
 		manager.addFutureMeeting(attendees, date);
 		assertEquals(null, manager.getFutureMeeting(-1));
