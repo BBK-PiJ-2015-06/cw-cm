@@ -217,4 +217,12 @@ public class TestContactManagerMeetingMethods {
 		manager.addFutureMeeting(attendees, date);
 		assertEquals(null, manager.getFutureMeeting(-1));
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetFutureMeetingWithIdOfPastMeeting() {
+		Calendar date = new GregorianCalendar(2016, 6, 11);
+		Set<Contact> attendees = manager.getContacts(1,2,3,4);
+		manager.addNewPastMeeting(attendees, date, "Notes");
+		FutureMeeting meeting = manager.getFutureMeeting(1);
+	}
 }
