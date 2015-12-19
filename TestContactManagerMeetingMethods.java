@@ -196,4 +196,25 @@ public class TestContactManagerMeetingMethods {
 		assertEquals(date, meeting.getDate());
 		assertEquals(attendees, meeting.getContacts());
 	}
+	
+	@Test 
+	public void testGetFutureMeetingWhereNoIdExists() {
+		assertEquals(null, manager.getFutureMeeting(1));
+	}
+	
+	@Test 
+	public void testGetFutureMeetingWithZeroId() {
+		Calendar date = new GregorianCalendar(2015, 6, 11);
+		Set<Contact> attendees = manager.getContacts(1,2,3,4);
+		manager.addFutureMeeting(attendees, date);
+		assertEquals(null, manager.getFutureMeeting(0));
+	}
+	
+	@Test 
+	public void testGetFutureMeetingWithNegativeId() {
+		Calendar date = new GregorianCalendar(2015, 6, 11);
+		Set<Contact> attendees = manager.getContacts(1,2,3,4);
+		manager.addFutureMeeting(attendees, date);
+		assertEquals(null, manager.getFutureMeeting(-1));
+	}
 }
