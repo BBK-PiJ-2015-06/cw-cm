@@ -47,6 +47,9 @@ public class ContactManagerImpl implements ContactManager {
 		if(id <= 0 || id > this.meetings.size()) {
 			return null;
 		} else {
+			if(this.meetings.get(id - 1) instanceof PastMeeting) {
+				throw new IllegalArgumentException("ID provided corresponds to past meeting");
+			}
 			return (FutureMeeting)this.meetings.get(id - 1);
 		}
 	}
