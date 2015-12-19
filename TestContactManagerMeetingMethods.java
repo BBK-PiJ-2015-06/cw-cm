@@ -89,4 +89,20 @@ public class TestContactManagerMeetingMethods {
 		attendees = manager.getContacts(3,4);
 		assertEquals(2, manager.addFutureMeeting(attendees, date));
 	}
+	
+	@Test 
+	public void testAddingMultiplePastMeetings() {
+		Set<Contact> attendees = manager.getContacts(1,2,3,4);
+		Calendar date = new GregorianCalendar(2015, 6, 11);
+		manager.addNewPastMeeting(attendees, date, "Notes");
+		date = new GregorianCalendar(2016, 0, 10);
+		attendees = manager.getContacts(3,4);
+		assertEquals(2, manager.addFutureMeeting(attendees, date));
+		attendees = manager.getContacts(1,2,3,4);
+		date = new GregorianCalendar(2015, 6, 11);
+		manager.addNewPastMeeting(attendees, date, "Notes");
+		date = new GregorianCalendar(2016, 0, 10);
+		attendees = manager.getContacts(3,4);
+		assertEquals(4, manager.addFutureMeeting(attendees, date));
+	}
 }
