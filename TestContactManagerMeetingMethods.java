@@ -185,4 +185,15 @@ public class TestContactManagerMeetingMethods {
 		manager.addFutureMeeting(attendees, date);
 		PastMeeting meeting = manager.getPastMeeting(1);
 	}
+	
+	@Test 
+	public void testGetFutureMeeting() {
+		Calendar date = new GregorianCalendar(2016, 6, 11);
+		Set<Contact> attendees = manager.getContacts(1,2,3,4);
+		manager.addFutureMeeting(attendees, date);
+		PastMeeting meeting = manager.getPastMeeting(1);
+		assertEquals(1, meeting.getId());
+		assertEquals(date, meeting.getDate());
+		assertEquals(attendees, meeting.getContacts());
+	}
 }
