@@ -44,7 +44,11 @@ public class ContactManagerImpl implements ContactManager {
 	
 	@Override
 	public FutureMeeting getFutureMeeting(int id) {
-		return (FutureMeeting)this.meetings.get(id - 1);
+		if(id <= 0 || id > this.meetings.size()) {
+			return null;
+		} else {
+			return (FutureMeeting)this.meetings.get(id - 1);
+		}
 	}
 	
 	@Override 
