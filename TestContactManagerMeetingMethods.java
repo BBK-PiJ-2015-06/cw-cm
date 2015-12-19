@@ -136,4 +136,12 @@ public class TestContactManagerMeetingMethods {
 		Set<Contact> attendees = new HashSet<Contact>();
 		manager.addNewPastMeeting(attendees, date, "Notes");
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testAddNewPastMeetingWithUnknownContact() {
+		Calendar date = new GregorianCalendar(2015, 6, 11);
+		Set<Contact> attendees = manager.getContacts(1,2,3,4);
+		attendees.add(new MockContact());
+		manager.addNewPastMeeting(attendees, date, "Notes");
+	}
 }
