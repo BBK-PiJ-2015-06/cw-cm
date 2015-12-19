@@ -130,4 +130,10 @@ public class TestContactManagerMeetingMethods {
 		manager.addNewPastMeeting(null, null, null);
 	}
 	
+	@Test(expected = IllegalArgumentException.class)
+	public void testAddNewPastMeetingWithEmptyContacts() {
+		Calendar date = new GregorianCalendar(2015, 6, 11);
+		Set<Contact> attendees = new HashSet<Contact>();
+		manager.addNewPastMeeting(attendees, date, "Notes");
+	}
 }
