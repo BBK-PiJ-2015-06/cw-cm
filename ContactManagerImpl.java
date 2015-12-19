@@ -56,6 +56,9 @@ public class ContactManagerImpl implements ContactManager {
 	
 	@Override 
 	public Meeting getMeeting(int id) {
+		if(id <= 0 || id >this.meetings.size()) {
+			return null;
+		}
 		return this.meetings.get(id - 1);
 	}
 	
