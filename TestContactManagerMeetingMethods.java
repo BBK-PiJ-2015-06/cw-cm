@@ -129,4 +129,5 @@ public class TestContactManagerMeetingMethods {
 	public void testAddNewPastMeetingWithNullParams() {
 		manager.addNewPastMeeting(null, null, null);
 	}
+	
 }
