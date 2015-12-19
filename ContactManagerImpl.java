@@ -42,6 +42,11 @@ public class ContactManagerImpl implements ContactManager {
 		}
 	}
 	
+	@Override
+	public FutureMeeting getFutureMeeting(int id) {
+		return (FutureMeeting)this.meetings.get(id - 1);
+	}
+	
 	@Override 
 	public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text) {
 		int newMeetingId = this.meetings.size() + 1;
