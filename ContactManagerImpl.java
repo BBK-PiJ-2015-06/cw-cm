@@ -34,6 +34,9 @@ public class ContactManagerImpl implements ContactManager {
 	public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text) {
 		int newMeetingId = this.meetings.size() + 1;
 		PastMeeting newMeeting = new PastMeetingImpl(newMeetingId, date, contacts, text);
+		if(!this.contacts.containsAll(contacts)) {
+			throw new IllegalArgumentException("Cannot create past meeting with unknown contact");
+		}
 		this.meetings.add(newMeeting);
 	}
 	
