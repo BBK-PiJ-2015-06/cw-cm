@@ -23,7 +23,7 @@ public class ContactManagerImpl implements ContactManager {
 		if(date.before(this.launchTime)) {
 			throw new IllegalArgumentException("Cannot create future meeting with past date");
 		}
-		if(!this.contacts.containsAll(contacts)) {
+		if(!this.contacts.containsAll(contacts)) { //tests whether the contacts parameter is a subset of this contacts
 			throw new IllegalArgumentException("Cannot create future meeting with unknown contact");
 		}
 		this.meetings.add(newMeeting);
