@@ -105,4 +105,28 @@ public class TestContactManagerMeetingMethods {
 		attendees = manager.getContacts(3,4);
 		assertEquals(4, manager.addFutureMeeting(attendees, date));
 	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testAddNewPastMeetingWithNullContacts() {
+		Calendar date = new GregorianCalendar(2015, 6, 11);
+		manager.addNewPastMeeting(null, date, "Notes");
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testAddNewPastMeetingWithNullDate() {
+		Set<Contact> attendees = manager.getContacts(1,2,3,4);
+		manager.addNewPastMeeting(attendees, null, "Notes");
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testAddNewPastMeetingWithNullNotes() {
+		Set<Contact> attendees = manager.getContacts(1,2,3,4);
+		Calendar date = new GregorianCalendar(2015, 6, 11);
+		manager.addNewPastMeeting(attendees, date, null);
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testAddNewPastMeetingWithNullParams() {
+		manager.addNewPastMeeting(null, null, null);
+	}
 }
