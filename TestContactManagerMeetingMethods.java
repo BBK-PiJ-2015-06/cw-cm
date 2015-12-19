@@ -233,9 +233,10 @@ public class TestContactManagerMeetingMethods {
 		manager.addFutureMeeting(attendees, futureDate);
 		Calendar pastDate = new GregorianCalendar(2015, 6, 11);
 		manager.addNewPastMeeting(attendees, pastDate, "Notes");
-		Meeting meeting = manager.getMeeting(2);
+		PastMeeting meeting = (PastMeeting)manager.getMeeting(2);
 		assertEquals(2, meeting.getId());
 		assertEquals(pastDate, meeting.getDate());
 		assertEquals(attendees, meeting.getContacts());
+		assertEquals("Notes", meeting.getNotes());
 	}
 }
