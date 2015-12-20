@@ -32,25 +32,21 @@ public class ContactManagerImpl implements ContactManager {
 	
 	@Override
 	public PastMeeting getPastMeeting(int id) {
-		if(id <= 0 || id > this.meetings.size()) {
-			return null;
+		if(getMeeting(id) != null) {
+			ContactManagerUtils.assertMeetingType(getMeeting(id), "PastMeetingImpl");
+			return (PastMeeting)getMeeting(id);
 		} else {
-			if(this.meetings.get(id - 1) instanceof FutureMeeting) {
-				throw new IllegalStateException("ID provided corresponds to future meeting");
-			}
-			return (PastMeeting)this.meetings.get(id - 1);
+			return null;
 		}
 	}
 	
 	@Override
 	public FutureMeeting getFutureMeeting(int id) {
-		if(id <= 0 || id > this.meetings.size()) {
-			return null;
+		if(getMeeting(id) != null) {
+			ContactManagerUtils.assertMeetingType(getMeeting(id), "FutureMeetingImpl");
+			return (FutureMeeting)getMeeting(id);
 		} else {
-			if(this.meetings.get(id - 1) instanceof PastMeeting) {
-				throw new IllegalArgumentException("ID provided corresponds to past meeting");
-			}
-			return (FutureMeeting)this.meetings.get(id - 1);
+			return null;
 		}
 	}
 	
