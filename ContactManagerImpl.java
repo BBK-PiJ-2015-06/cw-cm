@@ -32,22 +32,12 @@ public class ContactManagerImpl implements ContactManager {
 	
 	@Override
 	public PastMeeting getPastMeeting(int id) {
-		if(getMeeting(id) != null) {
-			ContactManagerUtils.assertMeetingType(getMeeting(id), "PastMeetingImpl");
-			return (PastMeeting)getMeeting(id);
-		} else {
-			return null;
-		}
+		return (PastMeeting)ContactManagerUtils.getMeetingOfType(getMeeting(id), "PastMeetingImpl");
 	}
 	
 	@Override
 	public FutureMeeting getFutureMeeting(int id) {
-		if(getMeeting(id) != null) {
-			ContactManagerUtils.assertMeetingType(getMeeting(id), "FutureMeetingImpl");
-			return (FutureMeeting)getMeeting(id);
-		} else {
-			return null;
-		}
+		return (FutureMeeting)ContactManagerUtils.getMeetingOfType(getMeeting(id), "FutureMeetingImpl");
 	}
 	
 	@Override 
