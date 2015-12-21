@@ -65,4 +65,9 @@ public class TestContactManagerGetListMethods {
 	public void testGetFutureMeetingListWithUnknownContact() {
 		List<Meeting> meetingList = manager.getFutureMeetingList(new MockContact());
 	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testGetFutureMeetingListWithNullContact() {
+		List<Meeting> meetingList = manager.getFutureMeetingList(null);
+	}
 }
