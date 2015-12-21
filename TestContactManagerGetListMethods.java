@@ -84,4 +84,10 @@ public class TestContactManagerGetListMethods {
 		assertEquals(1, meetingList.size());
 		assertEquals(12, meetingList.get(0).getId());
 	}
+	
+	@Test 
+	public void testGetMeetingListOnFreeDate() {
+		List<Meeting> meetingList = manager.getMeetingListOn(new GregorianCalendar(2014, 9, 10));
+		assertEquals(0, meetingList.size());
+	}
 }
