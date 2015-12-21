@@ -88,8 +88,11 @@ public class ContactManagerImpl implements ContactManager {
 	
 	@Override 
 	public List<PastMeeting> getPastMeetingListFor(Contact contact) {
+		if(contact == null) {
+			throw new NullPointerException("Parameter cannot be null");
+		}
 		if(!this.contacts.contains(contact)) {
-			throw new IllegalArgumentException("Cannot search for future meetings with unknown contact");
+			throw new IllegalArgumentException("Cannot search for past meetings with unknown contact");
 		}
 		List<PastMeeting> output = new ArrayList<PastMeeting>();
 		for(Meeting m : this.meetings) {
