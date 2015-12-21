@@ -176,4 +176,12 @@ public class ContactManagerImpl implements ContactManager {
 		}
 		return output;
 	}
+	
+	@Override
+	public void flush() {}
+	
+	//method created for purpose of testing only!
+	public void setLaunchTime(Calendar date) {
+		this.launchTime = date;
+	}
 }
