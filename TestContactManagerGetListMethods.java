@@ -38,8 +38,9 @@ public class TestContactManagerGetListMethods {
 		manager.addNewPastMeeting(manager.getContacts(5,6,8,9), new GregorianCalendar(2014, 0, 2), "Notes");
 		manager.addNewPastMeeting(manager.getContacts(2,3,4), new GregorianCalendar(2014, 11, 12), "Notes");
 		manager.addFutureMeeting(manager.getContacts(2,3), new GregorianCalendar(2017, 0, 5));
-		manager.addNewPastMeeting(manager.getContacts(1,2,3,4,5,6,7,8,9,10,11), new GregorianCalendar(2014, 9, 11), "Notes");
+		manager.addNewPastMeeting(manager.getContacts(1,2,3,4,5,6,7,8,9,10), new GregorianCalendar(2014, 9, 11), "Notes");
 		manager.addFutureMeeting(manager.getContacts(1,9), new GregorianCalendar(2017, 2, 30));
+		manager.addNewPastMeeting(manager.getContacts(11), new GregorianCalendar(2014, 9, 11), "Notes");
 	}
 	
 	@Test 
@@ -69,5 +70,18 @@ public class TestContactManagerGetListMethods {
 	@Test(expected = NullPointerException.class)
 	public void testGetFutureMeetingListWithNullContact() {
 		List<Meeting> meetingList = manager.getFutureMeetingList(null);
+	}
+	
+	@Test 
+	public void testGetMeetingList() {
+		List<Meeting> meetingList = manager.getMeetingListOn(new GregorianCalendar(2014, 9, 11));
+		assertEquals(2, meetingList.size());
+	}
+	
+	@Test 
+	public void testGetMeetingList2() {
+		List<Meeting> meetingList = manager.getMeetingListOn(new GregorianCalendar(2017, 2, 30));
+		assertEquals(1, meetingList.size());
+		assertEquals(12, meetingList.get(0).getId());
 	}
 }
