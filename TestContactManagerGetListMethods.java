@@ -120,4 +120,9 @@ public class TestContactManagerGetListMethods {
 	public void testGetPastMeetingListForUnknownContact() {
 		List<PastMeeting> meetingList = manager.getPastMeetingListFor(new MockContact());
 	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testGetPastMeetingListForNullContact() {
+		List<PastMeeting> meetingList = manager.getPastMeetingListFor(null);
+	}
 }
