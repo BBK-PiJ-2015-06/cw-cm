@@ -36,12 +36,28 @@ public class ContactManagerImpl implements ContactManager {
 	
 	@Override
 	public PastMeeting getPastMeeting(int id) {
-		return (PastMeeting)ContactManagerUtils.getMeetingOfType(getMeeting(id), "PastMeetingImpl");
+		Meeting output = getMeeting(id);
+		if(output != null) {
+			if(!(output instanceof PastMeeting)) {
+				throw new IllegalStateException("ID provided corresponds to invalid meeting type");
+			}
+			return (PastMeeting)output;
+		} else {
+			return null;
+		}
 	}
 	
 	@Override
 	public FutureMeeting getFutureMeeting(int id) {
-		return (FutureMeeting)ContactManagerUtils.getMeetingOfType(getMeeting(id), "FutureMeetingImpl");
+		Meeting output = getMeeting(id);
+		if(output != null) {
+			if(!(output instanceof FutureMeeting)) {
+				throw new IllegalArgumentException("ID provided corresponds to invalid meeting type");
+			}
+			return (FutureMeeting)output;
+		} else {
+			return null;
+		}
 	}
 	
 	@Override 
