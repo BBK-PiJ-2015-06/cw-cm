@@ -8,7 +8,7 @@ import java.util.GregorianCalendar;
 
 public class TestContactManagerGetListMethods {
 	
-	private ContactManager manager;
+	private ContactManagerImpl manager;
 	
 	@Before
 	public void init() {
@@ -160,5 +160,12 @@ public class TestContactManagerGetListMethods {
 	@Test(expected = IllegalStateException.class)
 	public void testAddMeetingNotesToFutureMeetingThatHasNotYetOccured() {
 		manager.addMeetingNotes(2, "More notes");
+	}
+	
+	@Test
+	public void testAddMeetingNotesToFutureMeetingThatHasOccured() {
+		manager.setLaunchTime(new GregorianCalendar(2017, 0, 1));
+		manager.addMeetingNotes(2, "More notes");
+		assertEquals("More notes", manager.getPastMeeting(2).getNotes());
 	}
 }
