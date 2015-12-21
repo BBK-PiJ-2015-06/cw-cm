@@ -115,4 +115,9 @@ public class TestContactManagerGetListMethods {
 		List<PastMeeting> meetingList = manager.getPastMeetingListFor(contact[0]);
 		assertEquals(0, meetingList.size());
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetPastMeetingListForUnknownContact() {
+		List<PastMeeting> meetingList = manager.getPastMeetingListFor(new MockContact());
+	}
 }
