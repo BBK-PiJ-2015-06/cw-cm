@@ -106,6 +106,7 @@ public class ContactManagerImpl implements ContactManager {
 	
 	@Override 
 	public PastMeeting addMeetingNotes(int id, String text) {
+		ContactManagerUtils.nullParamChecker(text);
 		Meeting m = getMeeting(id);
 		PastMeeting output;
 		if(m instanceof PastMeeting) {
