@@ -50,6 +50,9 @@ public class ContactManagerImpl implements ContactManager {
 	
 	@Override
 	public List<Meeting> getFutureMeetingList(Contact contact) {
+		if(!this.contacts.contains(contact)) {
+			throw new IllegalArgumentException("Cannot search for future meetings with unknown contact");
+		}
 		List<Meeting> output = new ArrayList<Meeting>();
 		for(Meeting m : this.meetings) {
 			if(m instanceof FutureMeeting && m.getContacts().contains(contact)) {
