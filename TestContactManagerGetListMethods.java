@@ -125,4 +125,10 @@ public class TestContactManagerGetListMethods {
 	public void testGetPastMeetingListForNullContact() {
 		List<PastMeeting> meetingList = manager.getPastMeetingListFor(null);
 	}
+	
+	@Test 
+	public void testAddingNotesToPastMeeting() {
+		manager.addMeetingNotes(1, "More notes");
+		assertEquals("Notes'\n'More notes", manager.getPastMeeting(1).getNotes());
+	}
 }
