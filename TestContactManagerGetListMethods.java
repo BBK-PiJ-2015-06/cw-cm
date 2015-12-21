@@ -99,7 +99,7 @@ public class TestContactManagerGetListMethods {
 	@Test 
 	public void testGetPastMeetingListForValidContact() {
 		Contact[] contact = manager.getContacts(3).toArray(new Contact[0]);
-		List<Meeting> meetingList = manager.getFutureMeetingList(contact[0]);
+		List<PastMeeting> meetingList = manager.getPastMeetingListFor(contact[0]);
 		assertEquals(3, meetingList.size());
 		assertTrue(meetingList.get(0).getDate().before(meetingList.get(1).getDate()));
 		assertTrue(meetingList.get(1).getDate().before(meetingList.get(2).getDate()));
