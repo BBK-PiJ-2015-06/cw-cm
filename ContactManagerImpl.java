@@ -22,8 +22,6 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
 		ContactManagerUtils.nullParamChecker(contacts, date);
-		int newMeetingId = this.meetings.size() + 1;
-		FutureMeeting newMeeting = new FutureMeetingImpl(newMeetingId, date, contacts);
 		if(date.before(this.launchTime)) {
 			throw new IllegalArgumentException(
 				"Cannot create future meeting with past date");
@@ -32,6 +30,8 @@ public class ContactManagerImpl implements ContactManager {
 			throw new IllegalArgumentException(
 				"Cannot create future meeting with unknown contact");
 		}
+		int newMeetingId = this.meetings.size() + 1;
+		FutureMeeting newMeeting = new FutureMeetingImpl(newMeetingId, date, contacts);
 		this.meetings.add(newMeeting);
 		return newMeeting.getId();
 	}
@@ -120,12 +120,12 @@ public class ContactManagerImpl implements ContactManager {
 	@Override 
 	public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text) {
 		ContactManagerUtils.nullParamChecker(contacts, date, text);
-		int newMeetingId = this.meetings.size() + 1;
-		PastMeeting newMeeting = new PastMeetingImpl(newMeetingId, date, contacts, text);
 		if(!this.contacts.containsAll(contacts)) {
 			throw new IllegalArgumentException(
 				"Cannot create past meeting with unknown contact");
 		}
+		int newMeetingId = this.meetings.size() + 1;
+		PastMeeting newMeeting = new PastMeetingImpl(newMeetingId, date, contacts, text);
 		this.meetings.add(newMeeting);
 	}
 	
