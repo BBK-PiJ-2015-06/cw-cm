@@ -156,4 +156,9 @@ public class TestContactManagerGetListMethods {
 	public void testAddMeetingNotesWithIdThatDoesNotExist3() {
 		manager.addMeetingNotes(-2, "More notes");
 	}
+	
+	@Test(expected = IllegalStateException.class)
+	public void testAddMeetingNotesToFutureMeetingThatHasNotYetOccured() {
+		manager.addMeetingNotes(2, "More notes");
+	}
 }
