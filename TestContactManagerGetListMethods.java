@@ -141,4 +141,19 @@ public class TestContactManagerGetListMethods {
 	public void testAddMeetingNotesWithNullParam() {
 		manager.addMeetingNotes(3, null);
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testAddMeetingNotesWithIdThatDoesNotExist() {
+		manager.addMeetingNotes(0, "More notes");
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testAddMeetingNotesWithIdThatDoesNotExist2() {
+		manager.addMeetingNotes(15, "More notes");
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testAddMeetingNotesWithIdThatDoesNotExist3() {
+		manager.addMeetingNotes(-2, "More notes");
+	}
 }
