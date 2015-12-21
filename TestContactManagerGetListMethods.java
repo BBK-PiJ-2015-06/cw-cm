@@ -136,4 +136,9 @@ public class TestContactManagerGetListMethods {
 		PastMeeting meeting = manager.addMeetingNotes(1, "More notes");
 		assertEquals("Notes\nMore notes", manager.getPastMeeting(1).getNotes());
 	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testAddMeetingNotesWithNullParam() {
+		manager.addMeetingNotes(3, null);
+	}
 }
