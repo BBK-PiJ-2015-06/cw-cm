@@ -19,6 +19,7 @@ public class ContactManagerImpl implements ContactManager {
 	
 	@Override
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
+		ContactManagerUtils.nullParamChecker(contacts, date);
 		int newMeetingId = this.meetings.size() + 1;
 		FutureMeeting newMeeting = new FutureMeetingImpl(newMeetingId, date, contacts);
 		if(date.before(this.launchTime)) {
@@ -51,12 +52,7 @@ public class ContactManagerImpl implements ContactManager {
 	
 	@Override
 	public List<Meeting> getFutureMeetingList(Contact contact) {
-		if(contact == null) {
-			throw new NullPointerException("Parameter cannot be null");
-		}
-		if(!this.contacts.contains(contact)) {
-			throw new IllegalArgumentException("Cannot search for future meetings with unknown contact");
-		}
+		ContactManagerUtils.contactChecker(contact, this.contacts);
 		List<Meeting> output = new ArrayList<Meeting>();
 		for(Meeting m : this.meetings) {
 			if(m instanceof FutureMeeting && m.getContacts().contains(contact)) {
@@ -69,9 +65,7 @@ public class ContactManagerImpl implements ContactManager {
 	
 	@Override 
 	public List<Meeting> getMeetingListOn(Calendar date) {
-		if(date == null) {
-			throw new NullPointerException("Parameter cannot be null");
-		}
+		ContactManagerUtils.nullParamChecker(date);
 		List<Meeting> output = new ArrayList<Meeting>();
 		for(Meeting m : this.meetings) {
 			Calendar meetingDate = m.getDate();
@@ -88,12 +82,7 @@ public class ContactManagerImpl implements ContactManager {
 	
 	@Override 
 	public List<PastMeeting> getPastMeetingListFor(Contact contact) {
-		if(contact == null) {
-			throw new NullPointerException("Parameter cannot be null");
-		}
-		if(!this.contacts.contains(contact)) {
-			throw new IllegalArgumentException("Cannot search for past meetings with unknown contact");
-		}
+		ContactManagerUtils.contactChecker(contact, this.contacts);
 		List<PastMeeting> output = new ArrayList<PastMeeting>();
 		for(Meeting m : this.meetings) {
 			if(m instanceof PastMeeting && m.getContacts().contains(contact)) {
@@ -106,6 +95,7 @@ public class ContactManagerImpl implements ContactManager {
 	
 	@Override 
 	public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text) {
+		ContactManagerUtils.nullParamChecker(contacts, date, text);
 		int newMeetingId = this.meetings.size() + 1;
 		PastMeeting newMeeting = new PastMeetingImpl(newMeetingId, date, contacts, text);
 		if(!this.contacts.containsAll(contacts)) {
@@ -116,6 +106,7 @@ public class ContactManagerImpl implements ContactManager {
 	
 	@Override
 	public int addNewContact(String name, String notes) {
+		ContactManagerUtils.nullParamChecker(name, notes);
 		if(name.equals("") || notes.equals("")) {
 			throw new IllegalArgumentException("Parameters cannot be empty strings");
 		}
@@ -127,9 +118,7 @@ public class ContactManagerImpl implements ContactManager {
 	
 	@Override 
 	public Set<Contact> getContacts(String name) {
-		if(name == null) {
-			throw new NullPointerException("Parameter cannot be null");
-		}
+		ContactManagerUtils.nullParamChecker(name);
 		if(name.equals("")) {
 			return this.contacts;
 		} else {

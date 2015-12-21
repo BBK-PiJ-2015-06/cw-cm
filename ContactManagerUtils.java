@@ -1,3 +1,5 @@
+import java.util.Set;
+
 public class ContactManagerUtils {
 	
 	public static Meeting getMeetingOfType(Meeting meeting, String classname) {
@@ -21,6 +23,21 @@ public class ContactManagerUtils {
 			output = 1;
 		}
 		return output;
+	}
+	
+	public static void nullParamChecker(Object... args) {
+		for(Object o : args) {
+			if(o == null) {
+				throw new NullPointerException("Cannot have null parameters");
+			}
+		}
+	}
+	
+	public static void contactChecker(Contact contact, Set<Contact> knownContacts) {
+		ContactManagerUtils.nullParamChecker(contact);
+		if(!knownContacts.contains(contact)) {
+			throw new IllegalArgumentException("Contact not known");
+		}
 	}
 
 }
