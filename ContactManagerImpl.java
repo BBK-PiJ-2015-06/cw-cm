@@ -1,4 +1,5 @@
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
@@ -59,6 +60,19 @@ public class ContactManagerImpl implements ContactManager {
 		List<Meeting> output = new ArrayList<Meeting>();
 		for(Meeting m : this.meetings) {
 			if(m instanceof FutureMeeting && m.getContacts().contains(contact)) {
+				output.add(m);
+			}
+		}
+		output.sort(ContactManagerUtils::chronologicalChecker);
+		return output;
+	}
+	
+	@Override 
+	public List<Meeting> getMeetingListOn(Calendar date) {
+		List<Meeting> output = new ArrayList<Meeting>();
+		for(Meeting m : this.meetings) {
+			Calendar meetingDate = m.getDate();
+			if(meetingDate.get(Calendar.YEAR) == date.get(Calendar.YEAR) && meetingDate.get(Calendar.MONTH) == date.get(Calendar.MONTH) && meetingDate.get(Calendar.DAY_OF_MONTH) == date.get(Calendar.DAY_OF_MONTH)) {
 				output.add(m);
 			}
 		}
