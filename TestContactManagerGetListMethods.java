@@ -95,4 +95,16 @@ public class TestContactManagerGetListMethods {
 	public void testGetMeetingListOnNullDate() {
 		List<Meeting> meetingList = manager.getMeetingListOn(null);
 	}
+	
+	@Test 
+	public void testGetPastMeetingListForValidContact() {
+		Contact[] contact = manager.getContacts(3).toArray(new Contact[0]);
+		List<Meeting> meetingList = manager.getFutureMeetingList(contact[0]);
+		assertEquals(3, meetingList.size());
+		assertTrue(meetingList.get(0).getDate().before(meetingList.get(1).getDate()));
+		assertTrue(meetingList.get(1).getDate().before(meetingList.get(2).getDate()));
+		assertEquals(3, meetingList.get(0).getId());
+		assertEquals(11, meetingList.get(1).getId());
+		assertEquals(9, meetingList.get(2).getId());
+	}
 }
