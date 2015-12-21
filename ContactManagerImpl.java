@@ -57,7 +57,7 @@ public class ContactManagerImpl implements ContactManager {
 		for(Meeting m : this.meetings) {
 			if(m instanceof FutureMeeting && m.getContacts().contains(contact)) {
 				output.add(m);
-			}
+			} 
 		}
 		output.sort(ContactManagerUtils::chronologicalChecker);
 		return output;
@@ -117,6 +117,10 @@ public class ContactManagerImpl implements ContactManager {
 			output = new PastMeetingImpl(id, pm.getDate(), pm.getContacts(), pm.getNotes() + '\n' + text);
 			this.meetings.set((id - 1), output);
 			return output;
+		} else {
+			if(m.getDate().after(this.launchTime)) {
+				throw new IllegalStateException("Cannot add notes to meeting that has not occured yet");
+			}
 		}
 		return null;
 	}
