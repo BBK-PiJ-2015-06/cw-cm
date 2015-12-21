@@ -50,6 +50,9 @@ public class ContactManagerImpl implements ContactManager {
 	
 	@Override
 	public List<Meeting> getFutureMeetingList(Contact contact) {
+		if(contact == null) {
+			throw new NullPointerException("Parameter cannot be null");
+		}
 		if(!this.contacts.contains(contact)) {
 			throw new IllegalArgumentException("Cannot search for future meetings with unknown contact");
 		}
