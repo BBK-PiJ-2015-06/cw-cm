@@ -115,14 +115,14 @@ public class ContactManagerImpl implements ContactManager {
 		if(m instanceof PastMeeting) {
 			PastMeeting pm = (PastMeeting)m;
 			output = new PastMeetingImpl(id, pm.getDate(), pm.getContacts(), pm.getNotes() + '\n' + text);
-			this.meetings.set((id - 1), output);
-			return output;
 		} else {
 			if(m.getDate().after(this.launchTime)) {
 				throw new IllegalStateException("Cannot add notes to meeting that has not occured yet");
 			}
+			output = new PastMeetingImpl(id, m.getDate(), m.getContacts(), text);
 		}
-		return null;
+		this.meetings.set((id - 1), output);
+		return output;
 	}
 	
 	@Override
