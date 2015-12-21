@@ -90,4 +90,9 @@ public class TestContactManagerGetListMethods {
 		List<Meeting> meetingList = manager.getMeetingListOn(new GregorianCalendar(2014, 9, 10));
 		assertEquals(0, meetingList.size());
 	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testGetMeetingListOnNullDate() {
+		List<Meeting> meetingList = manager.getMeetingListOn(null);
+	}
 }
