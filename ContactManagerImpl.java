@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
+import java.io.File;
+import java.io.IOException;
 
 public class ContactManagerImpl implements ContactManager {
 	
@@ -178,7 +180,16 @@ public class ContactManagerImpl implements ContactManager {
 	}
 	
 	@Override
-	public void flush() {}
+	public void flush() {
+		File contactsFile = new File("." + File.separator + "contacts.txt");
+		if(!contactsFile.exists()) {
+			try {
+				contactsFile.createNewFile();
+			} catch(IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+	}
 	
 	//method created for purpose of testing only!
 	public void setLaunchTime(Calendar date) {
