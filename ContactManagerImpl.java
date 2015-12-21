@@ -111,6 +111,7 @@ public class ContactManagerImpl implements ContactManager {
 		if(m instanceof PastMeeting) {
 			PastMeeting pm = (PastMeeting)m;
 			output = new PastMeetingImpl(id, pm.getDate(), pm.getContacts(), pm.getNotes() + '\n' + text);
+			this.meetings.set((id - 1), output);
 			return output;
 		}
 		return null;
