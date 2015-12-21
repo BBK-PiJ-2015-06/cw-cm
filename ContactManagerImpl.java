@@ -48,6 +48,18 @@ public class ContactManagerImpl implements ContactManager {
 		return this.meetings.get(id - 1);
 	}
 	
+	@Override
+	public List<Meeting> getFutureMeetingList(Contact contact) {
+		List<Meeting> output = new ArrayList<Meeting>();
+		for(Meeting m : this.meetings) {
+			if(m instanceof FutureMeeting && m.getContacts().contains(contact)) {
+				output.add(m);
+			}
+		}
+		output.sort(ContactManagerUtils::chronologicalChecker);
+		return output;
+	}
+	
 	@Override 
 	public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text) {
 		int newMeetingId = this.meetings.size() + 1;
