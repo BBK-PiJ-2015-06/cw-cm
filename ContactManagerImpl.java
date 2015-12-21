@@ -69,6 +69,9 @@ public class ContactManagerImpl implements ContactManager {
 	
 	@Override 
 	public List<Meeting> getMeetingListOn(Calendar date) {
+		if(date == null) {
+			throw new NullPointerException("Parameter cannot be null");
+		}
 		List<Meeting> output = new ArrayList<Meeting>();
 		for(Meeting m : this.meetings) {
 			Calendar meetingDate = m.getDate();
