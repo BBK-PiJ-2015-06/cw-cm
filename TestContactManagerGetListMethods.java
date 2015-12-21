@@ -130,4 +130,10 @@ public class TestContactManagerGetListMethods {
 	public void testAddingNotesToPastMeeting() {
 		assertEquals("Notes\nMore notes", manager.addMeetingNotes(1, "More notes").getNotes());
 	}
+	
+	@Test 
+	public void testAddingNotesToPastMeetingAndEnsureMeetingIsUpdated() {
+		PastMeeting meeting = manager.addMeetingNotes(1, "More notes");
+		assertEquals("Notes\nMore notes", manager.getPastMeeting(1).getNotes());
+	}
 }
