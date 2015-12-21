@@ -88,7 +88,14 @@ public class ContactManagerImpl implements ContactManager {
 	
 	@Override 
 	public List<PastMeeting> getPastMeetingListFor(Contact contact) {
-		return null;
+		List<PastMeeting> output = new ArrayList<PastMeeting>();
+		for(Meeting m : this.meetings) {
+			if(m instanceof PastMeeting && m.getContacts().contains(contact)) {
+				output.add((PastMeeting)m);
+			}
+		}
+		output.sort(ContactManagerUtils::chronologicalChecker);
+		return output;
 	}
 	
 	@Override 
