@@ -6,7 +6,7 @@ public class ContactManagerUtils {
 		if(meeting != null) {
 			String meetingClass = meeting.getClass().getName();
 			if(!meetingClass.equals(classname)) {
-				throw new IllegalArgumentException("ID provided corresponds to invalid meeting type");
+				throw new IllegalStateException("ID provided corresponds to invalid meeting type");
 			}
 			return meeting;
 		} else {
