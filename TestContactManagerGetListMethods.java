@@ -38,7 +38,7 @@ public class TestContactManagerGetListMethods {
 		manager.addNewPastMeeting(manager.getContacts(5,6,8,9), new GregorianCalendar(2014, 0, 2), "Notes");
 		manager.addNewPastMeeting(manager.getContacts(2,3,4), new GregorianCalendar(2014, 11, 12), "Notes");
 		manager.addFutureMeeting(manager.getContacts(2,3), new GregorianCalendar(2017, 0, 5));
-		manager.addNewPastMeeting(manager.getContacts(1,2,3,4,5,6,7,8,9,10), new GregorianCalendar(2014, 9, 11), "Notes");
+		manager.addNewPastMeeting(manager.getContacts(1,2,3,4,5,6,7,8,9,10,11), new GregorianCalendar(2014, 9, 11), "Notes");
 		manager.addFutureMeeting(manager.getContacts(1,9), new GregorianCalendar(2017, 2, 30));
 	}
 	
@@ -59,5 +59,10 @@ public class TestContactManagerGetListMethods {
 		Contact[] contact = manager.getContacts(11).toArray(new Contact[0]);
 		List<Meeting> meetingList = manager.getFutureMeetingList(contact[0]);
 		assertEquals(0, meetingList.size());
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetFutureMeetingListWithUnknownContact() {
+		List<Meeting> meetingList = manager.getFutureMeetingList(new MockContact());
 	}
 }
