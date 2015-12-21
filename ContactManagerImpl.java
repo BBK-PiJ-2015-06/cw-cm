@@ -87,6 +87,11 @@ public class ContactManagerImpl implements ContactManager {
 	}
 	
 	@Override 
+	public List<PastMeeting> getPastMeetingListFor(Contact contact) {
+		return null;
+	}
+	
+	@Override 
 	public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text) {
 		int newMeetingId = this.meetings.size() + 1;
 		PastMeeting newMeeting = new PastMeetingImpl(newMeetingId, date, contacts, text);
