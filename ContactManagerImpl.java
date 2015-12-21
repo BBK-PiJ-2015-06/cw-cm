@@ -75,6 +75,9 @@ public class ContactManagerImpl implements ContactManager {
 		List<Meeting> output = new ArrayList<Meeting>();
 		for(Meeting m : this.meetings) {
 			Calendar meetingDate = m.getDate();
+			//Ensure that comparison is only made between year, month and day
+			//of meetingDate and date parameter. Enables Calendar objects of
+			//different formates to be compared.
 			if(meetingDate.get(Calendar.YEAR) == date.get(Calendar.YEAR) && meetingDate.get(Calendar.MONTH) == date.get(Calendar.MONTH) && meetingDate.get(Calendar.DAY_OF_MONTH) == date.get(Calendar.DAY_OF_MONTH)) {
 				output.add(m);
 			}
