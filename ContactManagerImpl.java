@@ -25,10 +25,12 @@ public class ContactManagerImpl implements ContactManager {
 		int newMeetingId = this.meetings.size() + 1;
 		FutureMeeting newMeeting = new FutureMeetingImpl(newMeetingId, date, contacts);
 		if(date.before(this.launchTime)) {
-			throw new IllegalArgumentException("Cannot create future meeting with past date");
+			throw new IllegalArgumentException(
+				"Cannot create future meeting with past date");
 		}
 		if(!this.contacts.containsAll(contacts)) { //tests whether the contacts parameter is a subset of this contacts
-			throw new IllegalArgumentException("Cannot create future meeting with unknown contact");
+			throw new IllegalArgumentException(
+				"Cannot create future meeting with unknown contact");
 		}
 		this.meetings.add(newMeeting);
 		return newMeeting.getId();
@@ -39,7 +41,8 @@ public class ContactManagerImpl implements ContactManager {
 		Meeting output = getMeeting(id);
 		if(output != null) {
 			if(!(output instanceof PastMeeting)) {
-				throw new IllegalStateException("ID provided corresponds to invalid meeting type");
+				throw new IllegalStateException(
+					"ID provided corresponds to invalid meeting type");
 			}
 			return (PastMeeting)output;
 		} else {
@@ -52,7 +55,8 @@ public class ContactManagerImpl implements ContactManager {
 		Meeting output = getMeeting(id);
 		if(output != null) {
 			if(!(output instanceof FutureMeeting)) {
-				throw new IllegalArgumentException("ID provided corresponds to invalid meeting type");
+				throw new IllegalArgumentException(
+					"ID provided corresponds to invalid meeting type");
 			}
 			return (FutureMeeting)output;
 		} else {
@@ -90,7 +94,9 @@ public class ContactManagerImpl implements ContactManager {
 			//Ensure that comparison is only made between year, month and day
 			//of meetingDate and date parameter. Enables Calendar objects of
 			//different formates to be compared.
-			if(meetingDate.get(Calendar.YEAR) == date.get(Calendar.YEAR) && meetingDate.get(Calendar.MONTH) == date.get(Calendar.MONTH) && meetingDate.get(Calendar.DAY_OF_MONTH) == date.get(Calendar.DAY_OF_MONTH)) {
+			if(meetingDate.get(Calendar.YEAR) == date.get(Calendar.YEAR) 
+			   && meetingDate.get(Calendar.MONTH) == date.get(Calendar.MONTH) 
+			   && meetingDate.get(Calendar.DAY_OF_MONTH) == date.get(Calendar.DAY_OF_MONTH)) {
 				output.add(m);
 			}
 		}
@@ -117,7 +123,8 @@ public class ContactManagerImpl implements ContactManager {
 		int newMeetingId = this.meetings.size() + 1;
 		PastMeeting newMeeting = new PastMeetingImpl(newMeetingId, date, contacts, text);
 		if(!this.contacts.containsAll(contacts)) {
-			throw new IllegalArgumentException("Cannot create past meeting with unknown contact");
+			throw new IllegalArgumentException(
+				"Cannot create past meeting with unknown contact");
 		}
 		this.meetings.add(newMeeting);
 	}
@@ -135,7 +142,8 @@ public class ContactManagerImpl implements ContactManager {
 			output = new PastMeetingImpl(id, pm.getDate(), pm.getContacts(), pm.getNotes() + '\n' + text);
 		} else {
 			if(m.getDate().after(this.launchTime)) {
-				throw new IllegalStateException("Cannot add notes to meeting that has not occured yet");
+				throw new IllegalStateException(
+					"Cannot add notes to meeting that has not occured yet");
 			}
 			output = new PastMeetingImpl(id, m.getDate(), m.getContacts(), text);
 		}
@@ -184,7 +192,8 @@ public class ContactManagerImpl implements ContactManager {
 		//these have been combined in order to reduce repetitve code.
 		for(int i : ids) { 
 			if(i <= 0 || i > this.contacts.size()) {
-				throw new IllegalArgumentException("A provided ID does not correspond to a real contact");
+				throw new IllegalArgumentException(
+					"A provided ID does not correspond to a real contact");
 			}
 			for(Contact c : contacts) {
 				if(i == c.getId()) {
