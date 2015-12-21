@@ -129,7 +129,7 @@ public class ContactManagerImpl implements ContactManager {
 		if(m == null) {
 			throw new IllegalArgumentException("Meeting ID does not exist");
 		}
-		PastMeeting output;
+		PastMeeting output = null;
 		if(m instanceof PastMeeting) {
 			PastMeeting pm = (PastMeeting)m;
 			output = new PastMeetingImpl(id, pm.getDate(), pm.getContacts(), pm.getNotes() + '\n' + text);
