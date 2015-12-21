@@ -108,6 +108,9 @@ public class ContactManagerImpl implements ContactManager {
 	public PastMeeting addMeetingNotes(int id, String text) {
 		ContactManagerUtils.nullParamChecker(text);
 		Meeting m = getMeeting(id);
+		if(m == null) {
+			throw new IllegalArgumentException("Meeting ID does not exist");
+		}
 		PastMeeting output;
 		if(m instanceof PastMeeting) {
 			PastMeeting pm = (PastMeeting)m;
