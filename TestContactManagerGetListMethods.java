@@ -25,6 +25,7 @@ public class TestContactManagerGetListMethods {
 		manager.addNewContact("Slaven", "Notes");
 		manager.addNewContact("Ronald", "Notes");
 		manager.addNewContact("Alan", "Notes");
+		manager.addNewContact("Steve", "Notes");
 		
 		//Populating meeting list
 		manager.addNewPastMeeting(manager.getContacts(5), new GregorianCalendar(2014, 4, 20), "Notes");
@@ -51,5 +52,12 @@ public class TestContactManagerGetListMethods {
 		assertEquals(2, meetingList.get(0).getId());
 		assertEquals(6, meetingList.get(1).getId());
 		assertEquals(12, meetingList.get(2).getId());
+	}
+	
+	@Test 
+	public void testGetFutureMeetingListWithEmptyOutput() {
+		Contact[] contact = manager.getContacts(11).toArray(new Contact[0]);
+		List<Meeting> meetingList = manager.getFutureMeetingList(contact[0]);
+		assertEquals(0, meetingList.size());
 	}
 }
