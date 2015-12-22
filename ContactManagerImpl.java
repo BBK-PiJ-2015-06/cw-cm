@@ -28,7 +28,8 @@ public class ContactManagerImpl implements ContactManager {
 			try(ObjectInputStream ois = new ObjectInputStream(
 											new BufferedInputStream(
 												new FileInputStream(FILENAME)))) {
-				this.contacts = (Set<Contact>)ois.readObject();									
+				this.contacts = (Set<Contact>)ois.readObject();	
+				this.meetings = (List<Meeting>)ois.readObject();
 			} catch(IOException ex) {
 				ex.printStackTrace();
 			} catch(ClassNotFoundException ex) {
@@ -36,8 +37,8 @@ public class ContactManagerImpl implements ContactManager {
 			}
 		} else {
 			this.contacts = new HashSet<Contact>();
+			this.meetings = new ArrayList<Meeting>();
 		}
-		this.meetings = new ArrayList<Meeting>();
 		this.launchTime = Calendar.getInstance();
 	}
 	
@@ -243,6 +244,7 @@ public class ContactManagerImpl implements ContactManager {
 										new BufferedOutputStream(
 											new FileOutputStream(FILENAME)))) {
 			oos.writeObject(this.contacts);
+			oos.writeObject(this.meetings);
 		} catch(IOException ex) {
 			ex.printStackTrace();
 		}
