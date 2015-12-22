@@ -70,6 +70,36 @@ public class TestContactManagerFlush {
 	public void testFlushStoresAllMeetings() {
 		manager.flush();
 		ContactManager manager2 = new ContactManagerImpl();
-		assertEquals(14, manager2.addFutureMeeting(manager.getContacts(5,6,7), new GregorianCalendar(2017, 11, 2)));
+		assertEquals(14, manager2.addFutureMeeting(manager2.getContacts(5,6,7), new GregorianCalendar(2017, 11, 2)));
+	}
+	
+	@Test 
+	public void testFlushStoresAllContactsAndOverwrites() {
+		manager.flush();
+		ContactManager manager2 = new ContactManagerImpl();
+		assertEquals(12, manager2.getContacts("").size());
+		manager2.addNewContact("Mark", "notes");
+		manager2.flush();
+		ContactManager manager3 = new ContactManagerImpl();
+		assertEquals(13, manager3.getContacts("").size());
+		assertEquals("Mauricio", getContactName(manager3.getContacts(1)));
+		assertEquals("Arsene", getContactName(manager3.getContacts(2)));
+		assertEquals("Jose", getContactName(manager3.getContacts(3)));
+		assertEquals("Louis", getContactName(manager3.getContacts(4)));
+		assertEquals("Claudio", getContactName(manager3.getContacts(5)));
+		assertEquals("Jurgen", getContactName(manager3.getContacts(6)));
+		assertEquals("Roberto", getContactName(manager3.getContacts(7)));
+		assertEquals("Slaven", getContactName(manager3.getContacts(8)));
+		assertEquals("Ronald", getContactName(manager3.getContacts(9)));
+		assertEquals("Alan", getContactName(manager3.getContacts(10)));
+		assertEquals("Steve", getContactName(manager3.getContacts(11)));
+		assertEquals("Sam", getContactName(manager3.getContacts(12)));
+		assertEquals("Mark", getContactName(manager3.getContacts(13)));
+	}
+	
+	private String getContactName(Set<Contact> contacts) {
+		Contact[] c = contacts.toArray(new Contact[0]);
+		String output = c[0].getName();
+		return output;
 	}
 }
