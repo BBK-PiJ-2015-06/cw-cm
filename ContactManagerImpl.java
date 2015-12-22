@@ -1,20 +1,42 @@
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Set;
 import java.util.HashSet;
-import java.io.File;
-import java.io.IOException;
+import java.util.List;
+import java.util.Set;
+
+
 
 public class ContactManagerImpl implements ContactManager {
 	
 	private Set<Contact> contacts;
 	private List<Meeting> meetings;
 	private Calendar launchTime;
+	private final String FILENAME = "contacts.txt";
 	
 	public ContactManagerImpl() {
-		this.contacts = new HashSet<Contact>();
+		File contactsFile = new File("." + File.separator + FILENAME);
+		if(contactsFile.exists()) {
+			try(ObjectInputStream ois = new ObjectInputStream(
+											new BufferedInputStream(
+												new FileInputStream(FILENAME)))) {
+				this.contacts = (Set<Contact>)ois.readObject();									
+			} catch(IOException ex) {
+				ex.printStackTrace();
+			} catch(ClassNotFoundException ex) {
+				ex.printStackTrace();
+			}
+		} else {
+			this.contacts = new HashSet<Contact>();
+		}
 		this.meetings = new ArrayList<Meeting>();
 		this.launchTime = Calendar.getInstance();
 	}
@@ -209,13 +231,20 @@ public class ContactManagerImpl implements ContactManager {
 	
 	@Override
 	public void flush() {
-		File contactsFile = new File("." + File.separator + "contacts.txt");
+		File contactsFile = new File("." + File.separator + FILENAME);
 		if(!contactsFile.exists()) {
 			try {
 				contactsFile.createNewFile();
 			} catch(IOException ex) {
 				ex.printStackTrace();
 			}
+		}
+		try(ObjectOutputStream oos = new ObjectOutputStream(
+										new BufferedOutputStream(
+											new FileOutputStream(FILENAME)))) {
+			oos.writeObject(this.contacts);
+		} catch(IOException ex) {
+			ex.printStackTrace();
 		}
 	}
 	
