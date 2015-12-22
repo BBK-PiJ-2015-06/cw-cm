@@ -22,14 +22,11 @@ public class PastMeetingImpl extends MeetingImpl implements PastMeeting {
 	 * of the meeting, the Set of contacts that attended the meeting and any notes
 	 * that may have been recorded during / after the meeting.
 	 *
-	 * Each parameter is checked for validity in turn, starting with the ID, followed
-	 * by date, contacts and finally notes. No null values can be passed as 
-	 * parameters, the meeting ID must be greater than or equal to 1, and the Set
-	 * of contacts cannot be empty.
-	 *
-	 * Note that since each parameter is checked in the order specified by the constructor
-	 * method's declaration, an IllegalArgumentException will always be thrown if the
-	 * ID provided is invalid, even if the remaining parameters are null and so on.
+	 * Each parameter is checked for null values and once it is established that
+	 * no null parameters have been passed, each is then checked for validity in turn, 
+	 * starting with the ID, followed by date, and finally with contacts. No null values 
+	 * can be passed as parameters, the meeting ID must be greater than or equal to 1, 
+	 * and the Set of contacts cannot be empty.
 	 *
 	 * This method calls the constructor of the parent class MeetingImpl.
 	 *
@@ -43,9 +40,7 @@ public class PastMeetingImpl extends MeetingImpl implements PastMeeting {
 	 */
 	public PastMeetingImpl(int id, Calendar date, Set<Contact> contacts, String notes) {
 		super(id, date, contacts);
-		if(notes == null) {
-			throw new NullPointerException("Notes cannot be null");
-		}
+		ContactManagerUtils.nullParamChecker(notes);
 		this.notes = notes;
 	}
 	
