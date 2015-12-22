@@ -102,4 +102,14 @@ public class TestContactManagerFlush {
 		String output = c[0].getName();
 		return output;
 	}
+	
+	@Test 
+	public void testFlushStoresAllMeetingsAndOverwrites() {
+		manager.flush();
+		ContactManager manager2 = new ContactManagerImpl();
+		assertEquals(14, manager2.addFutureMeeting(manager2.getContacts(5,6,7), new GregorianCalendar(2017, 11, 2)));
+		manager2.flush();
+		ContactManager manager3 = new ContactManagerImpl();
+		assertEquals(15, manager3.addFutureMeeting(manager3.getContacts(4), new GregorianCalendar(2017, 11, 5)));
+	}
 }
