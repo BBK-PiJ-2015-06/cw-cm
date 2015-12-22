@@ -313,7 +313,7 @@ public class ContactManagerImpl implements ContactManager {
 	 * This method has been created purely for testing purposes as it is impossible
 	 * to create a future meeting with a past date within the contact manager object.
 	 *
-	 * This method enables the launchTime of this object to be resent so future meetings
+	 * This method enables the launchTime of this object to be reset so future meetings
 	 * with a date that occured in the past can be present within the contact manager.
 	 *
 	 * @param date the date that the launchTime of this object will be set to
