@@ -50,4 +50,11 @@ public class TestContactManagerFlush {
 		manager.flush();
 		assertTrue(new File("." + File.separator + "contacts.txt").exists());
 	}
+	
+	@Test 
+	public void testFlushStoresAlContacts() {
+		manager.flush();
+		ContactManager manager2 = new ContactManagerImpl();
+		assertEquals(12, manager2.getContacts("").size());
+	}
 }
