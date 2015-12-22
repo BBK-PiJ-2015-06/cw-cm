@@ -180,4 +180,18 @@ public class TestContactManagerGetListMethods {
 		assertEquals(5, meetingList.get(0).getId());
 		assertEquals(7, meetingList.get(1).getId());
 	}
+	
+	@Test 
+	public void testGetPastMeetingListForWithDuplicateMeetings() {
+		Contact[] contact = manager.getContacts(5).toArray(new Contact[0]);
+		List<PastMeeting> meetingList = manager.getPastMeetingListFor(contact[0]);
+		assertEquals(4, meetingList.size());
+		assertTrue(meetingList.get(0).getDate().before(meetingList.get(1).getDate()));
+		assertTrue(meetingList.get(1).getDate().before(meetingList.get(2).getDate()));
+		assertTrue(meetingList.get(2).getDate().before(meetingList.get(3).getDate()));
+		assertEquals(8, meetingList.get(0).getId());
+		assertEquals(1, meetingList.get(1).getId()); 
+		assertEquals(3, meetingList.get(2).getId()); 
+		assertEquals(11, meetingList.get(3).getId()); 
+ 	}
 }
