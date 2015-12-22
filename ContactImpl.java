@@ -62,11 +62,9 @@ public class ContactImpl implements Contact, Serializable {
 	 * @throws NullPointerException if the String parameters are null
 	 */
 	private void buildContact(int id, String name, String notes) {
+		ContactManagerUtils.nullParamChecker(name, notes);
 		if(id < 1) {
 			throw new IllegalArgumentException("Contact ID cannot be less than 1");
-		}
-		if(name == null || notes == null) {
-			throw new NullPointerException("Parameters cannot be null");
 		}
 		this.id = id;
 		this.name = name;
