@@ -42,6 +42,8 @@ public class TestContactManagerGetListMethods {
 		manager.addNewPastMeeting(manager.getContacts(1,2,3,4,5,6,7,8,9,10), new GregorianCalendar(2014, 9, 11), "Notes");
 		manager.addFutureMeeting(manager.getContacts(1,9), new GregorianCalendar(2017, 2, 30));
 		manager.addNewPastMeeting(manager.getContacts(11), new GregorianCalendar(2014, 9, 11), "Notes");
+		manager.addFutureMeeting(manager.getContacts(4,8), new GregorianCalendar(2017, 0, 22));
+		manager.addNewPastMeeting(manager.getContacts(5,6,8,9), new GregorianCalendar(2014, 0, 2), "Notes");
 	}
 	
 	@Test 
@@ -149,7 +151,7 @@ public class TestContactManagerGetListMethods {
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddMeetingNotesWithIdThatDoesNotExist2() {
-		manager.addMeetingNotes(15, "More notes");
+		manager.addMeetingNotes(16, "More notes");
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -167,5 +169,15 @@ public class TestContactManagerGetListMethods {
 		manager.setLaunchTime(new GregorianCalendar(2017, 0, 1));
 		manager.addMeetingNotes(2, "More notes");
 		assertEquals("More notes", manager.getPastMeeting(2).getNotes());
+	}
+	
+	@Test 
+	public void testGetFutureMeetingListWithDuplicateMeetings() {
+		Contact[] contact = manager.getContacts(4).toArray(new Contact[0]);
+		List<Meeting> meetingList = manager.getFutureMeetingList(contact[0]);
+		assertEquals(2, meetingList.size());
+		assertTrue(meetingList.get(0).getDate().before(meetingList.get(1).getDate()));
+		assertEquals(5, meetingList.get(0).getId());
+		assertEquals(7, meetingList.get(1).getId());
 	}
 }
