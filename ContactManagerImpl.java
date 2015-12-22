@@ -47,7 +47,7 @@ public class ContactManagerImpl implements ContactManager {
 		if(contactsFile.exists()) {
 			try(ObjectInputStream ois = new ObjectInputStream(
 				                         new BufferedInputStream(
-				                          new FileInputStream(FILENAME)))) {
+				                          new FileInputStream(contactsFile)))) {
 				this.contacts = (Set<Contact>)ois.readObject();	
 				this.meetings = (List<Meeting>)ois.readObject();
 			} catch(IOException ex) {
@@ -301,7 +301,7 @@ public class ContactManagerImpl implements ContactManager {
 		}
 		try(ObjectOutputStream oos = new ObjectOutputStream(
 			                           new BufferedOutputStream(
-			                             new FileOutputStream(FILENAME)))) {
+			                             new FileOutputStream(contactsFile)))) {
 			oos.writeObject(this.contacts);
 			oos.writeObject(this.meetings);
 		} catch(IOException ex) {
