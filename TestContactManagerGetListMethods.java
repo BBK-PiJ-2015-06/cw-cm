@@ -194,4 +194,10 @@ public class TestContactManagerGetListMethods {
 		assertEquals(3, meetingList.get(2).getId()); 
 		assertEquals(11, meetingList.get(3).getId()); 
  	}
+	
+	@Test 
+	public void testGetMeetingListRemovesDuplicates() {
+		List<Meeting> meetingList = manager.getMeetingListOn(new GregorianCalendar(2014, 0, 2));
+		assertEquals(1, meetingList.size());
+	}
 }
