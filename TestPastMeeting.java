@@ -5,6 +5,12 @@ import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * This testing class is used to test the implementation of the interface
+ * PastMeeting.
+ *
+ * @author George Shiangoli
+ */
 public class TestPastMeeting {
 	
 	private Contact contact1;

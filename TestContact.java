@@ -1,6 +1,12 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 
+/**
+ * This testing class is used to test the implementation of the interface
+ * Contact.
+ *
+ * @author George Shiangoli
+ */
 public class TestContact {
 	
 	@Test 

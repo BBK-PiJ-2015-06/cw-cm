@@ -3,6 +3,13 @@ import org.junit.*;
 import static org.junit.Assert.*;
 import java.util.Set;
 
+/**
+ * This testing class is used to test the implementation of the interface
+ * ContactManager. More specifically it tests those methods that only 
+ * involve creating new and retrieving contacts.
+ *
+ * @author George Shiangoli
+ */
 public class TestContactManagerContactMethods {
 	
 	private ContactManager manager;

@@ -6,7 +6,13 @@ import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 
-
+/**
+ * This testing class is used to test the implementation of the interface
+ * ContactManager. More specifically it tests those methods that only 
+ * involve adding and retrieving single meetings.
+ *
+ * @author George Shiangoli
+ */
 public class TestContactManagerMeetingMethods {
 	
 	private ContactManager manager;

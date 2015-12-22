@@ -7,6 +7,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * This testing class is used to test the implementation of the interface
+ * ContactManager. More specifically it tests those methods that retrieve
+ * lists of meetings as well as the addMeetingNotes method which converts
+ * future meetings to past meetings as an example of its functionality.
+ *
+ * @author George Shiangoli
+ */
 public class TestContactManagerGetListMethods {
 	
 	private ContactManagerImpl manager;

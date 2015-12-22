@@ -1,3 +1,4 @@
+import java.io.File;
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.util.List;
@@ -5,8 +6,15 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.io.File;
 
+/**
+ * This testing class is used to test the implementation of the interface
+ * ContactManager. More specifically it tests the flush() method and the 
+ * constructor of ContactManagerImpl and their ability to store and retireve
+ * date when closing / loading the contact manager application.
+ *
+ * @author George Shiangoli
+ */
 public class TestContactManagerFlush {
 	
 	private ContactManager manager;
