@@ -13,8 +13,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
-
 public class ContactManagerImpl implements ContactManager {
 	
 	private Set<Contact> contacts;
@@ -22,6 +20,7 @@ public class ContactManagerImpl implements ContactManager {
 	private Calendar launchTime;
 	private final String FILENAME = "contacts.txt";
 	
+	@SuppressWarnings("unchecked")
 	public ContactManagerImpl() {
 		File contactsFile = new File("." + File.separator + FILENAME);
 		if(contactsFile.exists()) {
