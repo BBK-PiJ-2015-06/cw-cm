@@ -1,10 +1,12 @@
+import java.io.Serializable;
+
 /**
  * A ContactImpl is an implementation of the interface Contact, 
  * which is defined in section 3.2 of the document for Assignment 3 - Contact Manager.
  *
  * @author George Shiangoli
  */
-public class ContactImpl implements Contact {
+public class ContactImpl implements Contact, Serializable {
 	
 	private int id;
 	private String name;
