@@ -102,6 +102,7 @@ public class ContactManagerImpl implements ContactManager {
 			}
 		}
 		output.sort(ContactManagerUtils::chronologicalChecker);
+		ContactManagerUtils.removeDuplicates(output);
 		return output;
 	}
 	
