@@ -13,6 +13,18 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * A ContactManagerImpl is an implementation of the interface ContactManager, 
+ * which is defined in section 3.1 of the document for Assignment 3 - Contact Manager.
+ *
+ * The class is used to manage a user's personal contacts and meetings, each of which 
+ * are stored as a set and a list respectively. ContactManagerImpl also contains two 
+ * additional private fields; one for storing the time that an instance of the class 
+ * was created and the other to hold the filename of the file that will contain all 
+ * saved data from each application session.
+ *
+ * @author George Shiangoli
+ */
 public class ContactManagerImpl implements ContactManager {
 	
 	private Set<Contact> contacts;
@@ -20,13 +32,22 @@ public class ContactManagerImpl implements ContactManager {
 	private Calendar launchTime;
 	private final String FILENAME = "contacts.txt";
 	
+	/**
+	 * ContactManagerImpl contains only one constructor that does not take any parameters
+	 * as arguments. The constructor builds the contact manager by populating the contacts
+	 * and meetings from a file "contacts.txt" which is located within the same directory as
+	 * the application. If this file is not found (and therefore this is the first object of
+	 * ContactManagerImpl to be created) the constructor simply initialises the set and list
+	 * fields to empty data structures. The launchTime is not obtained from the "contacts.txt"
+	 * file but is always initialised at each start up to the current time instance.
+	 */
 	@SuppressWarnings("unchecked")
 	public ContactManagerImpl() {
 		File contactsFile = new File("." + File.separator + FILENAME);
 		if(contactsFile.exists()) {
 			try(ObjectInputStream ois = new ObjectInputStream(
-											new BufferedInputStream(
-												new FileInputStream(FILENAME)))) {
+				                         new BufferedInputStream(
+				                          new FileInputStream(FILENAME)))) {
 				this.contacts = (Set<Contact>)ois.readObject();	
 				this.meetings = (List<Meeting>)ois.readObject();
 			} catch(IOException ex) {
@@ -41,6 +62,9 @@ public class ContactManagerImpl implements ContactManager {
 		this.launchTime = Calendar.getInstance();
 	}
 	
+	/**
+	 * @see ContactManager#addFutureMeeting(Set<Contact>, Calendar)
+	 */
 	@Override
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
 		ContactManagerUtils.nullParamChecker(contacts, date);
@@ -48,7 +72,7 @@ public class ContactManagerImpl implements ContactManager {
 			throw new IllegalArgumentException(
 				"Cannot create future meeting with past date");
 		}
-		if(!this.contacts.containsAll(contacts)) { //tests whether the contacts parameter is a subset of this contacts
+		if(!this.contacts.containsAll(contacts)) { //tests whether the contacts parameter is a subset of the known contacts
 			throw new IllegalArgumentException(
 				"Cannot create future meeting with unknown contact");
 		}
@@ -58,6 +82,9 @@ public class ContactManagerImpl implements ContactManager {
 		return newMeeting.getId();
 	}
 	
+	/**
+	 * @see ContactManager#getPastMeeting(int)
+	 */
 	@Override
 	public PastMeeting getPastMeeting(int id) {
 		Meeting output = getMeeting(id);
@@ -72,6 +99,9 @@ public class ContactManagerImpl implements ContactManager {
 		}
 	}
 	
+	/**
+	 * @see ContactManager#getFutureMeeting(int)
+	 */
 	@Override
 	public FutureMeeting getFutureMeeting(int id) {
 		Meeting output = getMeeting(id);
@@ -86,6 +116,9 @@ public class ContactManagerImpl implements ContactManager {
 		}
 	}
 	
+	/**
+	 * @see ContactManager#getMeeting(int)
+	 */
 	@Override 
 	public Meeting getMeeting(int id) {
 		if(id <= 0 || id >this.meetings.size()) {
@@ -94,6 +127,9 @@ public class ContactManagerImpl implements ContactManager {
 		return this.meetings.get(id - 1);
 	}
 	
+	/**
+	 * @see ContactManager#getFutureMeetingList(Contact)
+	 */
 	@Override
 	public List<Meeting> getFutureMeetingList(Contact contact) {
 		ContactManagerUtils.contactChecker(contact, this.contacts);
@@ -108,6 +144,9 @@ public class ContactManagerImpl implements ContactManager {
 		return output;
 	}
 	
+	/**
+	 * @see ContactManager#getMeetingListOn(Calendar)
+	 */
 	@Override 
 	public List<Meeting> getMeetingListOn(Calendar date) {
 		ContactManagerUtils.nullParamChecker(date);
@@ -128,6 +167,9 @@ public class ContactManagerImpl implements ContactManager {
 		return output;
 	}
 	
+	/**
+	 * @see ContactManager#getPastMeetingListFor(Contact)
+	 */
 	@Override 
 	public List<PastMeeting> getPastMeetingListFor(Contact contact) {
 		ContactManagerUtils.contactChecker(contact, this.contacts);
@@ -142,6 +184,9 @@ public class ContactManagerImpl implements ContactManager {
 		return output;
 	}
 	
+	/**
+	 * @see ContactManager#addNewPastMeeting(Set<Contact>, Calendar, String)
+	 */
 	@Override 
 	public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text) {
 		ContactManagerUtils.nullParamChecker(contacts, date, text);
@@ -154,6 +199,9 @@ public class ContactManagerImpl implements ContactManager {
 		this.meetings.add(newMeeting);
 	}
 	
+	/**
+	 * @see ContactManager#addMeetingNotes(int, String)
+	 */
 	@Override 
 	public PastMeeting addMeetingNotes(int id, String text) {
 		ContactManagerUtils.nullParamChecker(text);
@@ -176,6 +224,9 @@ public class ContactManagerImpl implements ContactManager {
 		return output;
 	}
 	
+	/**
+	 * @see ContactManager#addNewContact(String, String)
+	 */
 	@Override
 	public int addNewContact(String name, String notes) {
 		ContactManagerUtils.nullParamChecker(name, notes);
@@ -188,6 +239,9 @@ public class ContactManagerImpl implements ContactManager {
 		return newContact.getId();
 	}
 	
+	/**
+	 * @see ContactManager#getContacts(String)
+	 */
 	@Override 
 	public Set<Contact> getContacts(String name) {
 		ContactManagerUtils.nullParamChecker(name);
@@ -204,6 +258,9 @@ public class ContactManagerImpl implements ContactManager {
 		}
 	}
 	
+	/**
+	 * @see ContactManager#getContacts(int...)
+	 */
 	@Override
 	public Set<Contact> getContacts(int... ids) {
 		if(ids.length == 0) {
@@ -229,6 +286,9 @@ public class ContactManagerImpl implements ContactManager {
 		return output;
 	}
 	
+	/**
+	 * @see ContactManager#flush()
+	 */
 	@Override
 	public void flush() {
 		File contactsFile = new File("." + File.separator + FILENAME);
@@ -240,8 +300,8 @@ public class ContactManagerImpl implements ContactManager {
 			}
 		}
 		try(ObjectOutputStream oos = new ObjectOutputStream(
-										new BufferedOutputStream(
-											new FileOutputStream(FILENAME)))) {
+			                           new BufferedOutputStream(
+			                             new FileOutputStream(FILENAME)))) {
 			oos.writeObject(this.contacts);
 			oos.writeObject(this.meetings);
 		} catch(IOException ex) {
@@ -249,7 +309,15 @@ public class ContactManagerImpl implements ContactManager {
 		}
 	}
 	
-	//method created for purpose of testing only!
+	/**
+	 * This method has been created purely for testing purposes as it is impossible
+	 * to create a future meeting with a past date within the contact manager object.
+	 *
+	 * This method enables the launchTime of this object to be resent so future meetings
+	 * with a date that occured in the past can be present within the contact manager.
+	 *
+	 * @param date the date that the launchTime of this object will be set to
+	 */
 	public void setLaunchTime(Calendar date) {
 		this.launchTime = date;
 	}
