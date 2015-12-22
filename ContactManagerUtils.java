@@ -16,9 +16,9 @@ public class ContactManagerUtils {
 		return output;
 	}
 	
-	public static void removeDuplicates(List<Meeting> originalList) {
+	public static void removeDuplicates(List<? extends Meeting> originalList) {
 		for(int i = 0; i < originalList.size(); i++) {
-			ListIterator<Meeting> iterator = originalList.listIterator(i + 1);
+			ListIterator<? extends Meeting> iterator = originalList.listIterator(i + 1);
 			while(iterator.hasNext()) {
 				Meeting m = iterator.next();
 				Calendar d1 = originalList.get(i).getDate();
