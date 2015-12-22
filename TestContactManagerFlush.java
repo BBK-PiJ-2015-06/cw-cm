@@ -65,4 +65,11 @@ public class TestContactManagerFlush {
 		ContactManager manager2 = new ContactManagerImpl();
 		assertEquals(12, manager2.getContacts("").size());
 	}
+	
+	@Test 
+	public void testFlushStoresAllMeetings() {
+		manager.flush();
+		ContactManager manager2 = new ContactManagerImpl();
+		assertEquals(14, manager2.addFutureMeeting(manager.getContacts(5,6,7), new GregorianCalendar(2017, 11, 2)));
+	}
 }
