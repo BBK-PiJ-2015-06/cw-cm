@@ -97,12 +97,6 @@ public class TestContactManagerFlush {
 		assertEquals("Mark", getContactName(manager3.getContacts(13)));
 	}
 	
-	private String getContactName(Set<Contact> contacts) {
-		Contact[] c = contacts.toArray(new Contact[0]);
-		String output = c[0].getName();
-		return output;
-	}
-	
 	@Test 
 	public void testFlushStoresAllMeetingsAndOverwrites() {
 		manager.flush();
@@ -111,5 +105,25 @@ public class TestContactManagerFlush {
 		manager2.flush();
 		ContactManager manager3 = new ContactManagerImpl();
 		assertEquals(15, manager3.addFutureMeeting(manager3.getContacts(4), new GregorianCalendar(2017, 11, 5)));
+	}
+	
+	@Test 
+	public void testFlushStoresMeetingTypesCorrectly() {
+		manager.flush();
+		ContactManager manager2 = new ContactManagerImpl();
+		assertEquals(14, manager2.addFutureMeeting(manager2.getContacts(5,6,7), new GregorianCalendar(2017, 11, 2)));
+		manager2.flush();
+		ContactManager manager3 = new ContactManagerImpl();
+		assertEquals(15, manager3.addFutureMeeting(manager3.getContacts(4), new GregorianCalendar(2017, 11, 5)));
+		Contact[] c = manager3.getContacts(4).toArray(new Contact[0]);
+		assertEquals(3, manager3.getFutureMeetingList(c[0]).size());
+		c = manager3.getContacts(5).toArray(new Contact[0]);
+		assertEquals(4, manager3.getPastMeetingListFor(c[0]).size());
+	}
+	
+	private String getContactName(Set<Contact> contacts) {
+		Contact[] c = contacts.toArray(new Contact[0]);
+		String output = c[0].getName();
+		return output;
 	}
 }
