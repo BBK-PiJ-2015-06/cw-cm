@@ -1,10 +1,11 @@
+import java.io.File;
 import org.junit.*;
 import static org.junit.Assert.*;
-import java.util.List;
-import java.util.Set;
-import java.util.HashSet;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class TestContactManagerGetListMethods {
 	
@@ -44,6 +45,14 @@ public class TestContactManagerGetListMethods {
 		manager.addNewPastMeeting(manager.getContacts(11), new GregorianCalendar(2014, 9, 11), "Notes");
 		manager.addFutureMeeting(manager.getContacts(4,8), new GregorianCalendar(2017, 0, 22));
 		manager.addNewPastMeeting(manager.getContacts(5,6,8,9), new GregorianCalendar(2014, 0, 2), "Notes");
+	}
+	
+	@After
+	public void cleanUp() {
+		File contactsFile = new File("." + File.separator + "contacts.txt");
+		if(contactsFile.exists()) {
+			contactsFile.delete();
+		}	
 	}
 	
 	@Test 

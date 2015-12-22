@@ -1,9 +1,11 @@
+import java.io.File;
 import org.junit.*;
 import static org.junit.Assert.*;
-import java.util.Set;
-import java.util.HashSet;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
+import java.util.Set;
+
 
 public class TestContactManagerMeetingMethods {
 	
@@ -22,6 +24,14 @@ public class TestContactManagerMeetingMethods {
 		manager.addNewContact("Slaven", "Notes");
 		manager.addNewContact("Ronald", "Notes");
 		manager.addNewContact("Alan", "Notes");
+	}
+	
+	@After
+	public void cleanUp() {
+		File contactsFile = new File("." + File.separator + "contacts.txt");
+		if(contactsFile.exists()) {
+			contactsFile.delete();
+		}	
 	}
 	
 	@Test 

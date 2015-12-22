@@ -1,3 +1,4 @@
+import java.io.File;
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.util.Set;
@@ -9,6 +10,14 @@ public class TestContactManagerContactMethods {
 	@Before
 	public void init() {
 		manager = new ContactManagerImpl();
+	}
+	
+	@After
+	public void cleanUp() {
+		File contactsFile = new File("." + File.separator + "contacts.txt");
+		if(contactsFile.exists()) {
+			contactsFile.delete();
+		}	
 	}
 	
 	@Test 

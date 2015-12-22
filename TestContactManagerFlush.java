@@ -45,6 +45,14 @@ public class TestContactManagerFlush {
 		manager.addNewPastMeeting(manager.getContacts(11), new GregorianCalendar(2014, 9, 11), "Notes");
 	}
 	
+	@After
+	public void cleanUp() {
+		File contactsFile = new File("." + File.separator + "contacts.txt");
+		if(contactsFile.exists()) {
+			contactsFile.delete();
+		}	
+	}
+	
 	@Test 
 	public void testFlushCreatesTxtFile() {
 		manager.flush();
@@ -52,7 +60,7 @@ public class TestContactManagerFlush {
 	}
 	
 	@Test 
-	public void testFlushStoresAlContacts() {
+	public void testFlushStoresAllContacts() {
 		manager.flush();
 		ContactManager manager2 = new ContactManagerImpl();
 		assertEquals(12, manager2.getContacts("").size());
