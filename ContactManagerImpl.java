@@ -292,18 +292,27 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public void flush() {
 		File contactsFile = new File("." + File.separator + FILENAME);
-		if(!contactsFile.exists()) {
-			try {
-				contactsFile.createNewFile();
-			} catch(IOException ex) {
-				ex.printStackTrace();
-			}
-		}
+		clearFile(contactsFile);
 		try(ObjectOutputStream oos = new ObjectOutputStream(
 			                           new BufferedOutputStream(
 			                             new FileOutputStream(contactsFile)))) {
 			oos.writeObject(this.contacts);
 			oos.writeObject(this.meetings);
+		} catch(IOException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	private void clearFile(File file) {
+		if(file.exists()) {
+			try {
+				file.delete();
+			} catch(SecurityException ex) {
+				ex.printStackTrace();
+			}
+		}
+		try {
+			file.createNewFile();
 		} catch(IOException ex) {
 			ex.printStackTrace();
 		}
