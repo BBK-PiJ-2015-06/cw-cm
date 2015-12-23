@@ -127,6 +127,9 @@ public class TestContactManagerFlush {
 		assertEquals(3, manager3.getFutureMeetingList(c[0]).size());
 		c = manager3.getContacts(5).toArray(new Contact[0]);
 		assertEquals(4, manager3.getPastMeetingListFor(c[0]).size());
+		for(int i = 1; i <= 15; i++) {
+			assertEquals(i, manager3.getMeeting(i).getId());
+		}
 	}
 	
 	private String getContactName(Set<Contact> contacts) {
