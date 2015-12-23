@@ -295,36 +295,18 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public void flush() {
 		File contactsFile = new File("." + File.separator + FILENAME);
-		clearFile(contactsFile);
+		if(!contactsFile.exists()) {
+			try {
+				contactsFile.createNewFile();
+			} catch(IOException ex) {
+				ex.printStackTrace();
+			}
+		}
 		try(ObjectOutputStream oos = new ObjectOutputStream(
 			                           new BufferedOutputStream(
 			                             new FileOutputStream(contactsFile)))) {
 			oos.writeObject(this.contacts);
 			oos.writeObject(this.meetings);
-		} catch(IOException ex) {
-			ex.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Clears the "contacts.txt" file ready to recieve new data input to ensure
-	 * effective overwriting of the stored data.
-	 *
-	 * If a "contacts.txt" file does not already exist, this method simply creates
-	 * a new file to receive the read objects.
-	 *
-	 * @param file the file that is to be cleared and reset to an empty file
-	 */
-	private void clearFile(File file) {
-		if(file.exists()) {
-			try {
-				file.delete();
-			} catch(SecurityException ex) {
-				ex.printStackTrace();
-			}
-		}
-		try {
-			file.createNewFile();
 		} catch(IOException ex) {
 			ex.printStackTrace();
 		}
