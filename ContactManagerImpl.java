@@ -287,6 +287,9 @@ public class ContactManagerImpl implements ContactManager {
 	}
 	
 	/**
+	 * If a "contacts.txt" file does not exist within the current directory, a 
+	 * new empty text file is created.
+	 *
 	 * @see ContactManager#flush()
 	 */
 	@Override
@@ -303,6 +306,15 @@ public class ContactManagerImpl implements ContactManager {
 		}
 	}
 	
+	/**
+	 * Clears the "contacts.txt" file ready to recieve new data input to ensure
+	 * effective overwriting of the stored data.
+	 *
+	 * If a "contacts.txt" file does not already exist, this method simply creates
+	 * a new file to receive the read objects.
+	 *
+	 * @param file the file that is to be cleared and reset to an empty file
+	 */
 	private void clearFile(File file) {
 		if(file.exists()) {
 			try {
