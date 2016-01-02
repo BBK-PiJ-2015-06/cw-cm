@@ -153,9 +153,12 @@ public class ContactManagerImpl implements ContactManager {
 		List<Meeting> output = new ArrayList<Meeting>();
 		for(Meeting m : this.meetings) {
 			Calendar meetingDate = m.getDate();
-			//Ensure that comparison is only made between year, month and day
-			//of meetingDate and date parameter. Enables Calendar objects of
-			//different formates to be compared.
+			
+			/*
+			  Ensure that comparison is only made between year, month and day
+			  of meetingDate and date parameter. Enables Calendar objects of
+			  different formates to be compared.
+			*/
 			if(meetingDate.get(Calendar.YEAR) == date.get(Calendar.YEAR) 
 			   && meetingDate.get(Calendar.MONTH) == date.get(Calendar.MONTH) 
 			   && meetingDate.get(Calendar.DAY_OF_MONTH) == date.get(Calendar.DAY_OF_MONTH)) {
@@ -268,10 +271,12 @@ public class ContactManagerImpl implements ContactManager {
 		}
 		Set<Contact> output = new HashSet<Contact>();
 		
-		//loops through ids and adds the correct contacts to the output set
-		//whilst also checking each ID for validity. Can split these these
-		//two functions into separate 'for' loops for improved clarity, but 
-		//these have been combined in order to reduce repetitve code.
+		/*
+		  loops through ids and adds the correct contacts to the output set
+		  whilst also checking each ID for validity. Can split these these
+		  two functions into separate 'for' loops for improved clarity, but 
+		  these have been combined in order to reduce repetitve code.
+		*/
 		for(int i : ids) { 
 			if(i <= 0 || i > this.contacts.size()) {
 				throw new IllegalArgumentException(
