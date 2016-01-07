@@ -51,10 +51,7 @@ public class ContactManagerUtils {
 				Set<Contact> c1 = originalList.get(i).getContacts();
 				Calendar d2 = m.getDate();
 				Set<Contact> c2 = m.getContacts();
-				if(d1.get(Calendar.YEAR) == d2.get(Calendar.YEAR) 
-					&& d1.get(Calendar.MONTH) == d2.get(Calendar.MONTH) 
-					&& d1.get(Calendar.DAY_OF_MONTH) == d2.get(Calendar.DAY_OF_MONTH)
-					&& c1.size() == c2.size() && c1.containsAll(c2)) {
+				if(d1.equals(d2) && c1.size() == c2.size() && c1.containsAll(c2)) {
 						iterator.remove();
 				}
 			}
